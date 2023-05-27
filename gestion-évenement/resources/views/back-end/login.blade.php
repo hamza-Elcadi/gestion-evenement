@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Paper Dashboard 2 by Creative Tim
+    Login
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -26,20 +26,20 @@
               <h5 class="card-title text-center">Authentication</h5>
             </div>
             <div class="card-body">
-              <form>
+              <form method="post" action="">
                 <div class="row">
                   <div class="col-8 mx-auto">
                     <div class="form-group">
-                      <label>Username</label>
-                      <input type="text" class="form-control" placeholder="Username" value="">
+                      <label for="username">Username</label>
+                      <input type="text" name="username" class="form-control" placeholder="Username" value="">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-8 mx-auto">
                     <div class="form-group">
-                      <label>Password</label>
-                      <input type="password" class="form-control" placeholder="Password" value="">
+                      <label for="password">Password</label>
+                      <input type="password" name="password" class="form-control" placeholder="Password" value="">
                     </div>
                   </div>
                 </div>
