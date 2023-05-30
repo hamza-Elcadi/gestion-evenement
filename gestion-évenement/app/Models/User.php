@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
+    protected $primaryKey = 'id_user';
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -42,4 +44,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function events(): belongsToMany
+    {
+        return $this->belongsToMany(Event::class);
+    }
+    public function roles(): belongsToMany
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
 }
