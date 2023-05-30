@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('img_events', function (Blueprint $table) {
-            $table->increments('id_image');
+            $table->unsignedBigInteger('id_image');
             $table->string('name_image');
             $table->timestamps();
             //foreign keys
-            $table->integer('id_event');
+            $table->unsignedBigInteger('id_event');
             $table->foreign('id_event')->references('id_event')->on('events')->onDelete('cascade');
         });
     }

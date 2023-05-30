@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ribs', function (Blueprint $table) {
-            $table->increments('id_role');
+            $table->unsignedBigInteger('id_role');
             $table->string('name_role');
             $table->timestamps();
             //foreign keys

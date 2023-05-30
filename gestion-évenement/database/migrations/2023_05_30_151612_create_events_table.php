@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->increments('id_event');
+            $table->unsignedBigInteger('id_event');
             $table->string('title_event');
             $table->text('description_event');
             $table->date('date_start');
@@ -22,8 +22,8 @@ return new class extends Migration
             $table->boolean('status');
             $table->timestamps();
             //foreign keys
-            $table->integer('id_organizer');
-            $table->integer('id_category');
+            $table->unsignedBigInteger('id_organizer');
+            $table->unsignedBigInteger('id_category');
             $table->foreign('id_category')->references('id_category')->on('categories')->onDelete('cascade');
             $table->foreign('id_organizer')->references('id_organizer')->on('organizers')->onDelete('cascade');
 
