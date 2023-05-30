@@ -30,4 +30,8 @@ class Event extends Model
     {
         return $this->hasMany(Img_event::class);
     }
+    public function organizers(): belongsTo
+    {
+        return $this->belongsTo(Organizer::class);
+    }
 }

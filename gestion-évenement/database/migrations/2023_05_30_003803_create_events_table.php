@@ -24,8 +24,8 @@ return new class extends Migration
             //foreign keys
             $table->integer('id_organizer');
             $table->integer('id_category');
-            $table->foreach('id_category')->references('id_category')->on('categories')->onDelete('cascade');
-            $table->foreach('id_organizer')->references('id_organizer')->on('organizers')->onDelete('cascade');
+            $table->foreign('id_category')->references('id_category')->on('categories')->onDelete('cascade');
+            $table->foreign('id_organizer')->references('id_organizer')->on('organizers')->onDelete('cascade');
 
         });
     }
