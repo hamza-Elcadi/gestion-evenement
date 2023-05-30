@@ -15,6 +15,9 @@ return new class extends Migration
             $table->increments('id_role');
             $table->string('name_role');
             $table->timestamps();
+            //foreign keys
+            $table->integer('id_organizer');
+            $table->foreign('id_organizer')->references('id_organizer')->on('organizers')->onDelete('cascade');
         });
     }
 
