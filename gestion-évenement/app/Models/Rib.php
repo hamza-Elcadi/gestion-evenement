@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\belongsTo;
 class Rib extends Model
 {
-    protected $primaryKey = 'id_role';
+    protected $primaryKey = 'id_rib';
     use HasFactory;
     public function organizers(): belongsTo
     {

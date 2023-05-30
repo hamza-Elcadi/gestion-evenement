@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('partners', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_partner');
-            $table->string('name_partner');
-            $table->text('description_partner');
-            $table->string('image_partner');
+        Schema::create('categories', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_category')->primary();;
+            $table->string('name_category');
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('partners');
+        Schema::dropIfExists('categories');
     }
 };

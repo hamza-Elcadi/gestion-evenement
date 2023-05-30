@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('img_events', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_image');
+            $table->unsignedBigInteger('id_image')->primary();
             $table->string('name_image');
             $table->timestamps();
             //foreign keys

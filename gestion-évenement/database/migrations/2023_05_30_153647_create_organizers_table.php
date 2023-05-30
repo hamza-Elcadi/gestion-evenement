@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ribs', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_role');
-            $table->string('name_role');
+        Schema::create('organizers', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_organizer')->primary();;
+            $table->string('name_organizer');
+            $table->text('description_organizer');
+            $table->string('tel_organizer');
+            $table->string('logo_organizer');
             $table->timestamps();
-            //foreign keys
-            $table->integer('id_organizer');
-            $table->foreign('id_organizer')->references('id_organizer')->on('organizers')->onDelete('cascade');
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ribs');
+        Schema::dropIfExists('organizers');
     }
 };
