@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role_User extends Model
 {
-    protected $foreignKey = 'id_role';
-    protected $relatedKey = 'id_user';
+    protected $primaryKey = ['id_role', 'id_user'];
     use HasFactory;
 
 }

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_event')->primary();;
+            $table->unsignedBigInteger('id_event')->primary();
             $table->string('title_event');
             $table->text('description_event');
             $table->date('date_start');
