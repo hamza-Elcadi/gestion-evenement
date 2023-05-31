@@ -15,10 +15,13 @@ return new class extends Migration
             $table->unsignedBigInteger('id_role');
             $table->unsignedBigInteger('id_user');
             $table->timestamps();
+
             $table->foreign('id_role')->references('id_role')->on('roles')->onDelete('cascade');
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
 
-            $table->primary(['id_role','id_user']);
+            $table->primary(['id_role', 'id_user']);
+
+
         });
     }
 
