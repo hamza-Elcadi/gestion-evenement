@@ -13,12 +13,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // \App\Models\User::factory(10)->create();
-        User::factory()->count(10)->create([
-            'id_user' => function () {
-                static $userId = 1;
-                return $userId++;
-            },
-        ]);
+
+        User::factory()->count(1)->create();
+        //User::where('created_at', '<=', now())->delete();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
