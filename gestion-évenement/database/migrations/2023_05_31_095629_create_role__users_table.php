@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('role_users', function (Blueprint $table) {
+        Schema::create('role__users', function (Blueprint $table) {
             $table->unsignedBigInteger('id_role');
             $table->unsignedBigInteger('id_user');
             $table->timestamps();
@@ -19,10 +19,9 @@ return new class extends Migration
             $table->foreign('id_role')->references('id_role')->on('roles')->onDelete('cascade');
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
 
-            $table->primary(['id_role', 'id_user']);
-
-
+            $table->primary(['id_role','id_user']);
         });
+        Schema::rename('role__users', 'role_users');
     }
 
     /**
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('role_users');
+        Schema::dropIfExists('role__users');
     }
 };
