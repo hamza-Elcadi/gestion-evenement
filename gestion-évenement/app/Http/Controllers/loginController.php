@@ -39,7 +39,8 @@ class loginController extends Controller
 
 
         if ($user->isNotEmpty()) {
-            return view('back_end.dashboard');
+            $request->session()->put('last_activity', time());
+            return redirect()->route('dashboard');
         } else {
             return back()->withErrors([
                 'message' => 'Invalid username or password.',

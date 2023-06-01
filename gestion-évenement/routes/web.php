@@ -18,5 +18,10 @@ use App\Http\Controllers\loginController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/admin', [loginController::class,'index']);
-Route::post('/admin/dashboard', [loginController::class,'check'])->name('loginValide');
+Route::middleware(['web'])->group(function () {
+    Route::get('/admin', [loginController::class, 'index']);
+    Route::post('/check', [loginController::class, 'check'])->name('loginValide');
+});
+Route::get('/dashboard', function () {
+    return view('back_end.dashboard');
+})->name('dashboard');

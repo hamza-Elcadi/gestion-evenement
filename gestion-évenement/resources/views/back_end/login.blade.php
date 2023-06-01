@@ -21,10 +21,16 @@
     <div class="content outer">
       <div class="row middle">
         <div class="col-md-4 mx-auto">
+            @if ($errors->has('message'))
+                <div id="alert-message" class="alert alert-danger" style="display: none;">
+                    {{ $errors->first('message') }}
+                </div>
+            @endif
           <div class="card card-user">
             <div class="card-header">
               <h5 class="card-title text-center">Authentication</h5>
             </div>
+
             <div class="card-body">
               <form method="POST" action="{{route('loginValide')}}">
                 @csrf
@@ -61,6 +67,18 @@
   <script src="{{ asset('back-end/login/assets/js/core/popper.min.js') }}"></script>
   <script src="{{ asset('back-end/login/assets/js/core/bootstrap.min.js') }}"></script>
   <script src="{{ asset('back-end/login/assets/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
+  <script>
+    $(document).ready(function() {
+        // Show the alert message
+        $('#alert-message').fadeIn();
+
+        // Set a timeout to fade out the alert message after a few minutes (e.g., 5 minutes)
+        setTimeout(function() {
+            $('#alert-message').fadeOut();
+        }, 3000); // 5 minutes in milliseconds
+    });
+</script>
+
   <!--  Google Maps Plugin    -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Chart JS -->
