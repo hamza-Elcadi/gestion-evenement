@@ -26,7 +26,8 @@
               <h5 class="card-title text-center">Authentication</h5>
             </div>
             <div class="card-body">
-              <form method="post" action="">
+              <form method="POST" action="{{route('loginValide')}}">
+                @csrf
                 <div class="row">
                   <div class="col-8 mx-auto">
                     <div class="form-group">

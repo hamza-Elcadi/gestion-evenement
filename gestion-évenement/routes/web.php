@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\loginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/admin', [loginController::class,'index']);
+Route::post('/admin/dashboard', [loginController::class,'check'])->name('loginValide');
