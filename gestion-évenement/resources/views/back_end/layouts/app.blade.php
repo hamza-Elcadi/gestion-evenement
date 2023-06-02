@@ -18,6 +18,7 @@
   <link href="{{ asset($link . '/assets/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset($link . '/assets/css/bootstrap.min.css') }}" rel="stylesheet" />
   <link href="{{ asset($link . '/assets/css/paper-dashboard.css?v=2.0.1') }}" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
 </head>
 
 <body class="">
@@ -26,15 +27,12 @@
       <div class="logo">
         <a href="https://www.creative-tim.com" class="simple-text logo-mini">
           <div class="logo-image-small">
-            <img src="../assets/img/logo-small.png">
+            <i class="fa-solid fa-lock"></i>
           </div>
           <!-- <p>CT</p> -->
         </a>
         <a href="https://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
-          <!-- <div class="logo-image-big">
-            <img src="../assets/img/logo-big.png">
-          </div> -->
+          UserName
         </a>
       </div>
       <div class="sidebar-wrapper">
@@ -102,7 +100,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;">Paper Dashboard 2</a>
+            <a class="navbar-brand" href="javascript:;">ADMIN</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
