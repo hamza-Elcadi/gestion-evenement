@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Role;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,7 +15,12 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        User::factory()->count(1)->create();
+       User::factory(1)->create();
+       //Role::factory()->count(2)->create();
+
+        // Role::create(['name' => 'admin']);
+        // Role::create(['name' => 'modulator']);
+
         //User::where('created_at', '<=', now())->delete();
 
         // \App\Models\User::factory()->create([

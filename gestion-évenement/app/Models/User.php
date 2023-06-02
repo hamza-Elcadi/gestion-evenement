@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class User extends Authenticatable
 {
     protected $primaryKey = 'id_user';
@@ -48,9 +48,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Event::class);
     }
-    public function roles(): belongsToMany
+    public function roles(): belongsTo
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsTo(Role::class);
     }
 
 }
