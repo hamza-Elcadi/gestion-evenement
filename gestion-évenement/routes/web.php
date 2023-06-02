@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\dashboardController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\loginController;
@@ -22,6 +23,5 @@ Route::middleware(['web'])->group(function () {
     Route::get('/admin', [loginController::class, 'index']);
     Route::post('/check', [loginController::class, 'check'])->name('loginValide');
 });
-Route::get('/dashboard', function () {
-    return view('back_end.dashboard');
-})->name('dashboard');
+Route::get('/admin/dashboard',[dashboardController::class, 'index'])->name('dashboard');
+Route::get('/admin/modulator',[dashboardController::class, 'showAll'])->name('modulator');

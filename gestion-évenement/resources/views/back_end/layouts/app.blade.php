@@ -37,16 +37,16 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="active ">
-            <a href="./dashboard.html">
+          <li class="active">
+            <a href="{{route('dashboard')}}">
               <i class="nc-icon nc-bank"></i>
               <p>Dashboard</p>
             </a>
           </li>
           <li>
-            <a href="./icons.html">
-              <i class="nc-icon nc-diamond"></i>
-              <p>Icons</p>
+            <a href="{{route('modulator')}}">
+                <i class="fa-solid fa-users"></i>
+              <p>MODULATOR</p>
             </a>
           </li>
           <li>
