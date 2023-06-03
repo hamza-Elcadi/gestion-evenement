@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class dashboardController extends Controller
@@ -36,7 +36,8 @@ class dashboardController extends Controller
      */
     public function showAll()
     {
-        return view('back_end.modulator');
+        $modulators=User::where('id_role',1)->get();
+        return view('back_end.modulator',compact('modulators'));
     }
     public function show(string $id)
     {

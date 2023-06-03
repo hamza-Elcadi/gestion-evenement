@@ -1,4 +1,7 @@
 @extends('back_end.layouts.app')
+@section('classDashboardActive')
+class="active"
+@endsection
 @section('content')
 <div class="content">
     <div class="row">

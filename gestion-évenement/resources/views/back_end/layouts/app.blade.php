@@ -16,7 +16,6 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <!-- CSS Files -->
   <link href="{{ asset($link . '/assets/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset($link . '/assets/css/bootstrap.min.css') }}" rel="stylesheet" />
   <link href="{{ asset($link . '/assets/css/paper-dashboard.css?v=2.0.1') }}" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
 </head>
@@ -37,43 +36,43 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="active">
+          <li @yield('classDashboardActive')>
             <a href="{{route('dashboard')}}">
               <i class="nc-icon nc-bank"></i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li>
+          <li @yield('classModulatorActive')>
             <a href="{{route('modulator')}}">
                 <i class="fa-solid fa-users"></i>
               <p>MODULATOR</p>
             </a>
           </li>
-          <li>
+          <li @yield('class-Active')>
             <a href="./map.html">
               <i class="nc-icon nc-pin-3"></i>
               <p>Maps</p>
             </a>
           </li>
-          <li>
+          <li @yield('class-Active')>
             <a href="./notifications.html">
               <i class="nc-icon nc-bell-55"></i>
               <p>Notifications</p>
             </a>
           </li>
-          <li>
+          <li @yield('class-Active')>
             <a href="./user.html">
               <i class="nc-icon nc-single-02"></i>
               <p>User Profile</p>
             </a>
           </li>
-          <li>
+          <li @yield('class-Active')>
             <a href="./tables.html">
               <i class="nc-icon nc-tile-56"></i>
               <p>Table List</p>
             </a>
           </li>
-          <li>
+          <li @yield('class-Active')>
             <a href="./typography.html">
               <i class="nc-icon nc-caps-small"></i>
               <p>Typography</p>

@@ -25,3 +25,4 @@ Route::middleware(['web'])->group(function () {
 });
 Route::get('/admin/dashboard',[dashboardController::class, 'index'])->name('dashboard');
 Route::get('/admin/modulator',[dashboardController::class, 'showAll'])->name('modulator');
+Route::get('/admin/{addModulator}',[dashboardController::class, 'create'])->name('createModulatorForm');
