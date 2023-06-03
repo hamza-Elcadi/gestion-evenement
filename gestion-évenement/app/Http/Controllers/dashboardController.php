@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Http\RedirectResponse;
+
+
 
 class dashboardController extends Controller
 {
@@ -28,7 +33,19 @@ class dashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User();
+        $user->name_user = $request->input('name');
+        $user->cin = $request->input('cin');
+        $user->email_user = $request->input('email');
+        $user->pw_user = bcrypt($request->input('pw'));
+        $user->tel_user = $request->input('tel');
+        $user->id_role = $request->input('role');
+        $user->email_verified_at = now();
+        $user->remember_token = Str::random(10);
+        $user->created_at = now();
+        $user->updated_at = now();
+        $user->save();
+        return redirect('admin/modulator');
     }
 
     /**
@@ -36,8 +53,9 @@ class dashboardController extends Controller
      */
     public function showAll()
     {
-        $modulators=User::where('id_role',1)->get();
-        return view('back_end.modulator',compact('modulators'));
+        $modulators=User::with('roles')->get();
+        $roles=Role::all();
+        return view('back_end.modulator',compact('modulators','roles'));
     }
     public function show(string $id)
     {
