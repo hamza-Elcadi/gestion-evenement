@@ -26,3 +26,6 @@ Route::middleware(['web'])->group(function () {
 Route::get('/admin/dashboard',[dashboardController::class, 'index'])->name('dashboard');
 Route::get('/admin/modulator',[dashboardController::class, 'showAll'])->name('modulator');
 Route::post('/admin/addModulator',[dashboardController::class, 'store'])->name('createModulator');
+Route::get('/admin/editModulator/{updatedUser_id}',[dashboardController::class, 'edit'])->name('editModulator');
+Route::post('/admin/updateModulator/{updatedUser_id}',[dashboardController::class, 'update'])->name('updateModulator');
+Route::get('/admin//delete/{deletedUser_id}',[dashboardController::class,'destroy'])->name('deleteUser');

@@ -34,18 +34,18 @@ class dashboardController extends Controller
     public function store(Request $request)
     {
         $user = new User();
-        $user->name_user = $request->input('name');
+        $user->name_user = $request->input('name_user');
         $user->cin = $request->input('cin');
-        $user->email_user = $request->input('email');
-        $user->pw_user = bcrypt($request->input('pw'));
-        $user->tel_user = $request->input('tel');
-        $user->id_role = $request->input('role');
+        $user->email_user = $request->input('email_user');
+        $user->pw_user = bcrypt($request->input('pw_user'));
+        $user->tel_user = $request->input('tel_user');
+        $user->id_role = $request->input('id_role');
         $user->email_verified_at = now();
         $user->remember_token = Str::random(10);
         $user->created_at = now();
         $user->updated_at = now();
         $user->save();
-        return redirect('admin/modulator');
+        return redirect()->route('modulator');
     }
 
     /**
@@ -53,9 +53,17 @@ class dashboardController extends Controller
      */
     public function showAll()
     {
-        $modulators=User::with('roles')->get();
+
         $roles=Role::all();
-        return view('back_end.modulator',compact('modulators','roles'));
+        if(isset($_GET['updatedUser_id'])){
+            $modulator1 = User::find($_GET['updatedUser_id']);
+            return view('back_end.modulator',compact('modulator1','roles'));
+        }
+        else{
+            $modulators=User::with('roles')->get();
+            return view('back_end.modulator',compact('modulators','roles'));
+        }
+
     }
     public function show(string $id)
     {
@@ -65,24 +73,33 @@ class dashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $updatedUser_id)
     {
-        //
+        $modulator1 = User::find($updatedUser_id);
+        $roles=Role::all();
+        return view('back_end.modulator', compact('modulator1', 'roles'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, int $updatedUser_id)
     {
-        //
+        $userData = $request->all();
+        $userData['updated_at'] = now();
+        $userData['remember_token'] = Str::random(10);
+        $user = User::findOrFail($updatedUser_id);
+        $user->update($userData);
+        return redirect()->route('modulator');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $deletedUser_id)
     {
-        //
+        $user=User::find($deletedUser_id);
+        $user->delete();
+        return redirect()->back();
     }
 }
