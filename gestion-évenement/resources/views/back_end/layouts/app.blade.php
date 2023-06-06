@@ -50,8 +50,8 @@
           </li>
           <li @yield('class-Active')>
             <a href="./map.html">
-              <i class="nc-icon nc-pin-3"></i>
-              <p>Maps</p>
+                <i class="fa-solid fa-calendar-days"></i>
+              <p>Events</p>
             </a>
           </li>
           <li @yield('class-Active')>
