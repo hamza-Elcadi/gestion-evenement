@@ -17,7 +17,8 @@ class dashboardController extends Controller
      */
     public function index()
     {
-        return view('back_end.dashboard');
+        $userCount = User::count();
+        return view('back_end.dashboard',compact('userCount'));
 
     }
 

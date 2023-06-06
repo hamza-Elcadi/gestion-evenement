@@ -11,13 +11,13 @@ class="active"
                 <div class="row">
                   <div class="col-5 col-md-4">
                     <div class="icon-big text-center icon-warning">
-                      <i class="nc-icon nc-badge text-warning"></i>
+                        <i class="fa-solid fa-users" style="color: #fac976;"></i>
                     </div>
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="numbers">
                       <p class="card-category">Modulisateur</p>
-                      <p class="card-title">0<p>
+                      <p class="card-title">{{$userCount}}<p>
                     </div>
                   </div>
                 </div>
@@ -37,7 +37,7 @@ class="active"
                 <div class="row">
                   <div class="col-5 col-md-4">
                     <div class="icon-big text-center icon-warning">
-                      <i class="nc-icon nc-money-coins text-success"></i>
+                        <i class="fa-solid fa-calendar-days" style="color: #6ed2ac;"></i>
                     </div>
                   </div>
                   <div class="col-7 col-md-8">
