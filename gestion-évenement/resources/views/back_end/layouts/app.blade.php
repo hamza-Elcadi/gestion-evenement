@@ -49,7 +49,7 @@
             </a>
           </li>
           <li @yield('class-Active')>
-            <a href="./map.html">
+            <a href="{{route('event')}}">
                 <i class="fa-solid fa-calendar-days"></i>
               <p>Events</p>
             </a>
