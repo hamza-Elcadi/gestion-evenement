@@ -6,6 +6,7 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Crypt;
 
 
 
@@ -57,10 +58,12 @@ class dashboardController extends Controller
         $roles=Role::all();
         if(isset($_GET['updatedUser_id'])){
             $modulator1 = User::find($_GET['updatedUser_id']);
+            //$modulator1->pw_user = decrypt($modulator1->pw_user);
             return view('back_end.modulator',compact('modulator1','roles'));
         }
         else{
             $modulators=User::with('roles')->get();
+            //$modulators->pw_user = decrypt($modulators->pw_user);
             return view('back_end.modulator',compact('modulators','roles'));
         }
 
@@ -85,11 +88,15 @@ class dashboardController extends Controller
      */
     public function update(Request $request, int $updatedUser_id)
     {
-        $userData = $request->all();
-        $userData['updated_at'] = now();
-        $userData['remember_token'] = Str::random(10);
-        $user = User::findOrFail($updatedUser_id);
-        $user->update($userData);
+        // $userData = $request->all();
+        // $request['updated_at'] = now();
+        // $request['remember_token'] = Str::random(10);
+        // $user = User::findOrFail($updatedUser_id);
+        // $user->update($request->all());
+        $request['pw_user'] = bcrypt($request['pw_user']);
+        $request['updated_at'] = now();
+        $request['remember_token'] = Str::random(10);
+        User::where('id_user', $updatedUser_id)->update($request->except('_token'));
         return redirect()->route('modulator');
     }
 
