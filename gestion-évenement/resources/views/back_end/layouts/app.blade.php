@@ -48,7 +48,7 @@
               <p>MODULATOR</p>
             </a>
           </li>
-          <li @yield('class-Active')>
+          <li @yield('classEventActive')>
             <a href="{{route('event')}}">
                 <i class="fa-solid fa-calendar-days"></i>
               <p>Events</p>
