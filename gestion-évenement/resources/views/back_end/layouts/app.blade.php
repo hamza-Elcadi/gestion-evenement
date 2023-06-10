@@ -30,7 +30,7 @@
 </head>
 
 <body class="">
-    <div class="wrapper ">
+    <div class="wrapper " style="background-color: #f4f3ef;">
         <div class="sidebar" data-color="white" data-active-color="danger">
             <div class="logo">
                 <a href="https://www.creative-tim.com" class="simple-text logo-mini">
@@ -96,7 +96,7 @@
                 </ul>
             </div>
         </div>
-        <div class="main-panel">
+        <div class="main-panel" style="height: 100%;">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
                 <div class="container-fluid">
@@ -167,7 +167,7 @@
 
             @yield('content')
 
-            <footer class="footer footer-black  footer-white ">
+            <footer class="footer footer-black  footer-white" style="background-color: inherit;">
                 <div class="container-fluid">
                     <div class="row">
                         <nav class="footer-nav">

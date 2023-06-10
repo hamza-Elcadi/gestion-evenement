@@ -3,7 +3,7 @@
     class="active"
 @endsection
 @section('content')
-    <div class="content pb-3">
+    <div class="content pb-3" style="background-color: inherit;">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -177,6 +177,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
