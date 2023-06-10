@@ -3,7 +3,7 @@
     class="active"
 @endsection
 @section('content')
-    <div class="content" style="height: 81vh">
+    <div class="content pb-3">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -94,6 +94,17 @@
                                             <input type="hidden" class="form-control" placeholder="categorie">
                                         </div>
 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="role">Partner</label>
+                                        <select placeholder='location' class="custom-select" id="inputGroupSelect01" name="id_role">
+                                            <option value='1'>available</option>
+                                            <option value='0'>unavailable</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>

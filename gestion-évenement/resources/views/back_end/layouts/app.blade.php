@@ -24,6 +24,7 @@
             max-width: 100px;
             height: auto;
             margin: 10px;
+            border: 1px solid black;
         }
     </style>
 </head>
