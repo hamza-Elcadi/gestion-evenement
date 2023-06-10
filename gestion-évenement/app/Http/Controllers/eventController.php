@@ -18,9 +18,9 @@ class eventController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(int $addEvent)
     {
-        //
+        return view('back_end.event',compact('addEvent'));
     }
 
     /**

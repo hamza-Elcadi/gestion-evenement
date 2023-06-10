@@ -196,6 +196,10 @@
       demo.initChartsPages();
     });
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.2/autosize.min.js"></script>
+  <script>
+    autosize(document.querySelector('#myTextarea'));
+  </script>
 </body>
 
 </html>

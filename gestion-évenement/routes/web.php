@@ -32,3 +32,4 @@ Route::post('/admin/updateModulator/{updatedUser_id}',[dashboardController::clas
 Route::get('/admin//delete/{deletedUser_id}',[dashboardController::class,'destroy'])->name('deleteUser');
 
 Route::get('/admin/event',[eventController::class, 'index'])->name('event');
+Route::get('/admin/event/addEvent',[eventController::class, 'index'])->name('addEvent');
