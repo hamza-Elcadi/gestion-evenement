@@ -62,14 +62,50 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="role">Status</label>
                                         <select placeholder='location' class="custom-select" id="inputGroupSelect01" name="id_role">
-                                            <option value='1'>valable</option>
-                                            <option value='0'>not valable</option>
+                                            <option value='1'>available</option>
+                                            <option value='0'>unavailable</option>
                                         </select>
                                     </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="role">Orgnizer</label>
+                                        <select placeholder='location' class="custom-select" id="inputGroupSelect01" name="id_role">
+                                            <option value='1'>available</option>
+                                            <option value='0'>unavailable</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="d-flex justify-content-between">
+                                            <label for="role">Categorie</label>
+                                            <a href="">+add categorie</a>
+                                        </div>
+                                        <div>
+                                            <select placeholder='location' class="custom-select" id="inputGroupSelect01" name="id_role">
+                                                <option value='1'>available</option>
+                                                <option value='0'>unavailable</option>
+                                            </select>
+                                            <input type="hidden" class="form-control" placeholder="categorie">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="ml-auto mr-auto mt-3">
+                                    <label for="imageUpload" class="fs-2 d-flex flex-row justify-content-between align-items-center">
+                                        <h3>Select </h3>
+                                        <i class="fa-regular fa-square-caret-up fa-6x"></i>
+                                        <h3>Images </h3>
+                                    </label>
+                                    <input type="file" class="custom-file-input" id="imageUpload" multiple>
+                                    <div id="previewContainer"></div>
                                 </div>
                             </div>
                             <div class="row">
