@@ -7,6 +7,8 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\eventController;
 use App\Http\Controllers\organizerController;
 use App\Http\Controllers\partnerController;
+use App\Http\Controllers\ribController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +36,8 @@ Route::get('/admin//delete/{deletedUser_id}',[dashboardController::class,'destro
 //Event
 Route::get('/admin/event',[eventController::class, 'index'])->name('event');
 Route::get('/admin/event/addEvent',[eventController::class, 'index'])->name('addEvent');
+//Rib
+Route::get('/admin/event/organizerWithNewRib',[ribController::class, 'create'])->name('createRib');
 //Organizer
 Route::get('/admin/organizer',[organizerController::class, 'index'])->name('organizer');
 Route::get('/admin/event/organizer',[organizerController::class, 'create'])->name('addOrganizer');

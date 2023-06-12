@@ -63,7 +63,7 @@
                             <p>Events</p>
                         </a>
                     </li>
-                    <li @yield('class-Active')>
+                    <li @yield('classOrganizerActive')>
                         <a href="{{route('organizer')}}">
                             <i class="fa-solid fa-sitemap"></i>
                             <p>Organizers</p>

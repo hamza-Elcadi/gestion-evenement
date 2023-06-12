@@ -1,5 +1,5 @@
 @extends('back_end.layouts.app')
-@section('classEventActive')
+@section('classOrganizerActive')
     class="active"
 @endsection
 @section('content')

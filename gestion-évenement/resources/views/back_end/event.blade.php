@@ -165,20 +165,23 @@
                                     <div class="form-group">
                                         <div class="d-flex justify-content-between">
                                             <label for="rib">Rib</label>
-                                            <a href="{{route('addOrganizer',['addRib' => 1])}}">+add rib</a>
+
+                                        @if(!isset($addRib))
+                                            <a href="{{route('createRib')}}">+add rib</a>
                                         </div>
+                                            <select placeholder='location' class="custom-select" id="inputGroupSelect01" name="id_role">
+                                                <option value='1'>available</option>
+                                                <option value='0'>unavailable</option>
+                                            </select>
+                                        @else
+                                            <a href="{{route('addOrganizer')}}">rib list</a>
+                                        </div>
+                                        <form action="" method="post">
+                                                <input type="text" class="form-control" placeholder="rib">
+                                                <button type="submit" class="btn btn-primary btn-block">add rib</button>
+                                        </form>
+                                        @endif
                                     </div>
-                                @if(isset($_GET['addRib']))
-                                    <select placeholder='location' class="custom-select" id="inputGroupSelect01" name="id_role">
-                                        <option value='1'>available</option>
-                                        <option value='0'>unavailable</option>
-                                    </select>
-                                @else
-                                    <form action="" method="post">
-                                        <input type="text" class="form-control" placeholder="rib">
-                                        <button type="submit" class="btn btn-primary" >add rib</button>
-                                    </form>
-                                @endif
                                 </div>
                             </div>
                             <div class="row">
