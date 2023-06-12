@@ -21,8 +21,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
     <style>
         .preview-image {
-            max-width: 100px;
-            height: auto;
+            max-width: 150px;
+            height: 100px;
             margin: 10px;
             border: 1px solid black;
         }

@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\eventController;
-
+use App\Http\Controllers\organizerController;
+use App\Http\Controllers\partnerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +31,10 @@ Route::post('/admin/addModulator',[dashboardController::class, 'store'])->name('
 Route::get('/admin/editModulator/{updatedUser_id}',[dashboardController::class, 'edit'])->name('editModulator');
 Route::post('/admin/updateModulator/{updatedUser_id}',[dashboardController::class, 'update'])->name('updateModulator');
 Route::get('/admin//delete/{deletedUser_id}',[dashboardController::class,'destroy'])->name('deleteUser');
-
+//Event
 Route::get('/admin/event',[eventController::class, 'index'])->name('event');
 Route::get('/admin/event/addEvent',[eventController::class, 'index'])->name('addEvent');
+//Organizer
+Route::get('/admin/event/organizer',[organizerController::class, 'create'])->name('addOrganizer');
+Route::post('/admin/event/store',[organizerController::class, 'store'])->name('storeOrganizer');
+
