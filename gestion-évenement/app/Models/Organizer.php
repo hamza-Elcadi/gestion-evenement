@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\hasMany;
+use Illuminate\Database\Eloquent\Relations\belongsTo;
 
 class Organizer extends Model
 {
@@ -14,8 +15,8 @@ class Organizer extends Model
     {
         return $this->hasMany(Event::class);
     }
-    public function ribs(): hasMany
+    public function ribs(): belongsTo
     {
-        return $this->hasMany(Rib::class);
+        return $this->belongsTo(Rib::class);
     }
 }

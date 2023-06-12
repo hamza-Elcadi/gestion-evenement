@@ -35,6 +35,7 @@ Route::get('/admin//delete/{deletedUser_id}',[dashboardController::class,'destro
 Route::get('/admin/event',[eventController::class, 'index'])->name('event');
 Route::get('/admin/event/addEvent',[eventController::class, 'index'])->name('addEvent');
 //Organizer
+Route::get('/admin/organizer',[organizerController::class, 'index'])->name('organizer');
 Route::get('/admin/event/organizer',[organizerController::class, 'create'])->name('addOrganizer');
 Route::post('/admin/event/store',[organizerController::class, 'store'])->name('storeOrganizer');
 

@@ -155,11 +155,30 @@
                                         <input type="text" class="form-control" id="name_organizer" placeholder="name_organizer" name="name_organizer">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="tel_organizer">Tel</label>
                                         <input type="tel" class="form-control" id="tel_organizer" placeholder="tel_organizer" name="tel_organizer">
                                     </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="d-flex justify-content-between">
+                                            <label for="rib">Rib</label>
+                                            <a href="{{route('addOrganizer',['addRib' => 1])}}">+add rib</a>
+                                        </div>
+                                    </div>
+                                @if(isset($_GET['addRib']))
+                                    <select placeholder='location' class="custom-select" id="inputGroupSelect01" name="id_role">
+                                        <option value='1'>available</option>
+                                        <option value='0'>unavailable</option>
+                                    </select>
+                                @else
+                                    <form action="" method="post">
+                                        <input type="text" class="form-control" placeholder="rib">
+                                        <button type="submit" class="btn btn-primary" >add rib</button>
+                                    </form>
+                                @endif
                                 </div>
                             </div>
                             <div class="row">
@@ -176,8 +195,6 @@
                                         <div class="btn btn-outline-primary btn-block">Add Image</div>
                                         <div id="previewContainer"></div>
                                     </div>
-
-
                                 </div>
                             </div>
                             <div class="row">

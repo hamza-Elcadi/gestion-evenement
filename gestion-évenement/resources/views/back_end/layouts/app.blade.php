@@ -64,9 +64,9 @@
                         </a>
                     </li>
                     <li @yield('class-Active')>
-                        <a href="./notifications.html">
+                        <a href="{{route('organizer')}}">
                             <i class="fa-solid fa-sitemap"></i>
-                            <p>organizers</p>
+                            <p>Organizers</p>
                         </a>
                     </li>
                     <li @yield('class-Active')>
@@ -215,7 +215,7 @@
     </script>
     <script>
         // Get the file input element
-        const fileInput = document.getElementById('imageUpload');
+        const fileInput = document.getElementById('logo_organizer');
 
         // Listen for file selection
         fileInput.addEventListener('change', handleFileSelect, false);

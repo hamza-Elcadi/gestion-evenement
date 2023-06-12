@@ -11,7 +11,7 @@ class organizerController extends Controller
      */
     public function index()
     {
-        //
+        return view('back_end.organizer');
     }
 
     /**
