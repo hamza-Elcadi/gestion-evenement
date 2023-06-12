@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('tel_organizer');
             $table->string('logo_organizer');
             $table->timestamps();
+            //foreign keys
+            $table->unsignedBigInteger('id_rib');
+            $table->foreign('id_rib')->references('id_rib')->on('ribs')->onDelete('cascade');
         });
     }
 

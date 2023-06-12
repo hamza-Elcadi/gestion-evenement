@@ -15,9 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id_rib');
             $table->string('name_rib');
             $table->timestamps();
-            //foreign keys
-            $table->unsignedBigInteger('id_organizer');
-            $table->foreign('id_organizer')->references('id_organizer')->on('organizers')->onDelete('cascade');
+
         });
     }
 
