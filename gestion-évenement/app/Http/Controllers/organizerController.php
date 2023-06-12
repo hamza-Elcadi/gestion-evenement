@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Organizer;
 class organizerController extends Controller
 {
     /**
@@ -28,7 +28,21 @@ class organizerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $organizerData = $request->all();
+
+        $organizer = new Organizer();
+        $organizer->name_organizer = $organizerData['name_organizer'];
+        $organizer->tel_organizer = $organizerData['tel_organizer'];
+        $organizer->description_organizer = $organizerData['description_organizer'];
+        $logoImage = $request->file('logo_organizer');
+        if ($logoImage) {
+            $logoImageName = time() . '_' . $logoImage->getClientOriginalName();
+            $logoImage->move(public_path('logo_images'), $logoImageName);
+            $organizer->logo_organizer = 'logo_images/' . $logoImageName;
+        }
+        $organizer->save();
+        return redirect()->route('addOrganizer')->with('success', 'Organizer added successfully');
+
     }
 
     /**

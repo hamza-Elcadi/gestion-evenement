@@ -65,8 +65,8 @@
                     </li>
                     <li @yield('class-Active')>
                         <a href="./notifications.html">
-                            <i class="nc-icon nc-bell-55"></i>
-                            <p>Notifications</p>
+                            <i class="fa-solid fa-sitemap"></i>
+                            <p>organizers</p>
                         </a>
                     </li>
                     <li @yield('class-Active')>
@@ -249,6 +249,23 @@
                     document.getElementById('previewContainer').appendChild(img);
                 };
             }
+        }
+    </script>
+    {{-- //succes message --}}
+    <script>
+        // Get the success message element
+        const successMessage = document.getElementById('successMessage');
+
+        // Check if the success message element exists
+        if (successMessage) {
+            // Set a timeout to gradually hide the success message after 5 seconds
+            setTimeout(function() {
+                successMessage.style.transition = 'opacity 1s';
+                successMessage.style.opacity = '0';
+                setTimeout(function() {
+                    successMessage.style.display = 'none';
+                }, 500);
+            }, 3000);
         }
     </script>
 

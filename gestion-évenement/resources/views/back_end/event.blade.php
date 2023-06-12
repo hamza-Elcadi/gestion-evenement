@@ -146,21 +146,19 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{route('storeOrganizer')}}">
+                        <form method="post" action="{{route('storeOrganizer')}}"  enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="title_event">Name</label>
-                                        <input type="text" class="form-control" id="title_event"
-                                        placeholder="Enter name" name="title_event" value="">
+                                        <label for="name_organizer">Name</label>
+                                        <input type="text" class="form-control" id="name_organizer" placeholder="name_organizer" name="name_organizer">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="tel_organizer">Tel</label>
-                                        <input type="tel" class="form-control" id="tel_organizer"
-                                        placeholder="Enter telephone number">
+                                        <input type="tel" class="form-control" id="tel_organizer" placeholder="tel_organizer" name="tel_organizer">
                                     </div>
                                 </div>
                             </div>
@@ -168,14 +166,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="description_organizer">Description</label>
-                                        <textarea class="form-control" id="description_organizer" placeholder="Enter description"
-                                        name="description_organizer"></textarea>
+                                        <textarea class="form-control" id="description_organizer" placeholder="description_organizer" name="description_organizer"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="imageUpload">Select Images (note better with 250x400)</label>
+                                    <label for="logo_organizer">Select Images (note better with 250x400)</label>
                                     <div class="d-flex align-items-center" >
-                                        <input type="file" class="custom-file-input" style="position: absolute;" id="imageUpload">
+                                        <input type="file" class="custom-file-input" style="position: absolute;" id="logo_organizer" name="logo_organizer">
                                         <div class="btn btn-outline-primary btn-block">Add Image</div>
                                         <div id="previewContainer"></div>
                                     </div>
@@ -187,6 +184,14 @@
                                 <div class="update ml-auto mr-auto">
                                     <button type="submit" class="btn btn-primary btn-round">Add Organizer</button>
                                 </div>
+                            </div>
+                            <div class="row">
+                                @if (session('success'))
+                                    <div id="successMessage" class="alert alert-success ml-auto mr-auto fade show">
+                                        {{ session('success') }}
+                                        <button type="button" class="close pl-4 position-relative top-0"data-dismiss="alert">&times;</button>
+                                    </div>
+                                @endif
                             </div>
                         </form>
                     </div>
