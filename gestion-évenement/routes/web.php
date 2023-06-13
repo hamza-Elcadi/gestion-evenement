@@ -45,4 +45,6 @@ Route::post('/admin/event/storeRib', [ribController::class, 'store'])->name('sto
 Route::get('/admin/organizer',[organizerController::class, 'index'])->name('organizer');
 Route::get('/admin/event/organizer',[organizerController::class, 'create'])->name('addOrganizer');
 Route::post('/admin/event/store',[organizerController::class, 'store'])->name('storeOrganizer');
+Route::get('/admin/event/Update/{update_id}',[organizerController::class, 'edit'])->name('updateOrganizer');
+
 

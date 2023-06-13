@@ -71,9 +71,12 @@ class organizerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $update_id)
     {
-        //
+        $updateOrganizer=1;
+        $organizerValue = Organizer::find($update_id);
+        $ribs=Rib::all();
+        return view('back_end.organizer',compact('organizerValue','updateOrganizer','ribs'));
     }
 
     /**
