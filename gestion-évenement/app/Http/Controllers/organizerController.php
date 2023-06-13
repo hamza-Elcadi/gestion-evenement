@@ -24,7 +24,7 @@ class organizerController extends Controller
     {
         $addOrganizer=1;
         $ribs=Rib::all();
-        return view('back_end.event',compact('addOrganizer','ribs'));
+        return view('back_end.organizer',compact('addOrganizer','ribs'));
     }
 
     /**

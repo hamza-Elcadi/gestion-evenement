@@ -7,10 +7,91 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
+                @if (isset($addOrganizer))
+                <div class="card-header d-flex justify-content-between">
+                    <h4 class="card-title">Add Organizer</h4>
+                    <div>
+                        <a href="{{ route('event') }}" class="btn btn-primary">Event list</a>
+                        <a href="{{ route('organizer') }}" class="btn btn-primary">Organizer list</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{{route('storeOrganizer')}}"  enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name_organizer">Name</label>
+                                    <input type="text" class="form-control" id="name_organizer" placeholder="name_organizer" name="name_organizer">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="tel_organizer">Tel</label>
+                                    <input type="tel" class="form-control" id="tel_organizer" placeholder="tel_organizer" name="tel_organizer">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="d-flex justify-content-between">
+                                        <label for="rib">Rib</label>
+
+                                    @if(!isset($addRib))
+                                        <a href="{{route('createRib')}}">+add rib</a>
+                                    </div>
+                                    <select class="custom-select" id="inputGroupSelect01" name="list_rib">
+                                        @if (isset($ribs) && $ribs->count() > 0)
+                                            @foreach ($ribs as $rib)
+                                                <option value="{{$rib->id_rib}}" selected>{{$rib->name_rib}}</option>
+                                            @endforeach
+                                        @else
+                                            <option value="">Empty</option>
+                                        @endif
+                                      </select>
+                                    @else
+                                        <a href="{{route('addOrganizer')}}">rib list</a>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="name_rib" name="name_rib">
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="description_organizer">Description</label>
+                                    <textarea class="form-control" id="description_organizer" placeholder="description_organizer" name="description_organizer"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="logo_organizer">Select Images (250x400)</label>
+                                <div class="d-flex align-items-center" >
+                                    <input type="file" class="custom-file-input" style="position: absolute;" id="logo_organizer" name="logo_organizer">
+                                    <div class="btn btn-outline-primary btn-block">Add Image</div>
+                                    <div id="previewContainer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="update ml-auto mr-auto">
+                                <button type="submit" class="btn btn-primary btn-round">Add Organizer</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            @if (session('success'))
+                                <div id="successMessage" class="alert alert-success ml-auto mr-auto fade show">
+                                    {{ session('success') }}
+                                    <button type="button" class="close pl-4 position-relative top-0"data-dismiss="alert">&times;</button>
+                                </div>
+                            @endif
+                        </div>
+                    </form>
+                </div>
+                @else
                 <div class="card-header d-flex justify-content-between">
                     <h4 class="card-title">Organizer List</h4>
                     <div>
-                        <a href="{{ route('addOrganizer', ['addOrganizer' => 1]) }}">
+                        <a href="{{ route('addOrganizer') }}">
                             <button type="button" class="btn btn-primary">Add Organizer</button>
                         </a>
                     </div>
@@ -75,6 +156,7 @@
                         </table>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>
