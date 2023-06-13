@@ -26,29 +26,49 @@
                                     description
                                 </th>
                                 <th>
-                                    date Start
+                                    Tel
                                 </th>
                                 <th>
-                                    duration
+                                    Rib
                                 </th>
                                 <th>
-                                    location
+                                    Image
                                 </th>
-                                <th>
-                                    number of places
-                                </th>
-                                <th>
-                                    status
-                                </th>
+                                <th></th>
                             </thead>
                             <tbody>
-                                <tr>
-                                <tr class="mx-auto" scope="row">
-                                    <td colspan="7" class="p-3 mb-2 bg-info text-white " role="alert">
-                                        <div class="mx-auto" style="width: 100px;">Empty</div>
-                                    </td>
-                                </tr>
-                                </tr>
+                                @if (isset($organizers) && $organizers->count() > 0)
+                                    @foreach ($organizers as $organizer)
+                                        <tr>
+                                            <td scope="row">
+                                                {{ $organizer->name_organizer }}
+                                            </td>
+                                            <td scope="row">
+                                                {{ $organizer->description_organizer }}
+                                            </td>
+                                            <td scope="row">
+                                                {{ $organizer->tel_organizer }}
+                                            </td>
+                                            <td scope="row">
+                                                {{ $organizer->ribs->name_rib }}
+                                            </td>
+                                            <td scope="row">
+                                                <img src="{{ $organizer->logo_organizer }}" alt="Organizer Logo">
+                                            </td>
+                                            <td scope="row" class="d-flex justify-content-between">
+                                                <a href="{{ route('deleteUser', ['deletedUser_id' =>$organizer->id_organizer]) }}"><i class="fa-solid fa-trash"></i></a>
+                                                <a href="{{ route('modulator', ['updatedUser_id' =>$organizer->id_organizer]) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            </td>
+
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr class="mx-auto" scope="row">
+                                        <td colspan="5" class="p-3 mb-2 bg-info text-white " role="alert">
+                                            <div class="mx-auto" style="width: 100px;">Empty</div>
+                                        </td>
+                                    </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>

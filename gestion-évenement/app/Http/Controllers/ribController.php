@@ -29,6 +29,11 @@ class ribController extends Controller
      */
     public function store(Request $request)
     {
+        $ribData = $request->all();
+        $rib = new Rib();
+        $rib->name_rib = $ribData['name_rib'];
+        $rib->save();
+        return redirect()->route('createRib');
 
     }
 

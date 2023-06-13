@@ -11,6 +11,6 @@ class Rib extends Model
     use HasFactory;
     public function organizers(): hasMany
     {
-        return $this->hasMany(Organizer::class);
+        return $this->hasMany(Organizer::class, 'id_organizer');
     }
 }

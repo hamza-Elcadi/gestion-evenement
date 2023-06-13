@@ -17,6 +17,6 @@ class Organizer extends Model
     }
     public function ribs(): belongsTo
     {
-        return $this->belongsTo(Rib::class);
+        return $this->belongsTo(Rib::class, 'id_rib');
     }
 }

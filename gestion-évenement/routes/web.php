@@ -38,6 +38,9 @@ Route::get('/admin/event',[eventController::class, 'index'])->name('event');
 Route::get('/admin/event/addEvent',[eventController::class, 'index'])->name('addEvent');
 //Rib
 Route::get('/admin/event/organizerWithNewRib',[ribController::class, 'create'])->name('createRib');
+Route::post('/admin/event/storeRib', [ribController::class, 'store'])->name('storeRib');
+
+
 //Organizer
 Route::get('/admin/organizer',[organizerController::class, 'index'])->name('organizer');
 Route::get('/admin/event/organizer',[organizerController::class, 'create'])->name('addOrganizer');

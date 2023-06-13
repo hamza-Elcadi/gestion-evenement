@@ -169,17 +169,19 @@
                                         @if(!isset($addRib))
                                             <a href="{{route('createRib')}}">+add rib</a>
                                         </div>
-                                            <select placeholder='location' class="custom-select" id="inputGroupSelect01" name="id_role">
-                                                <option value='1'>available</option>
-                                                <option value='0'>unavailable</option>
-                                            </select>
+                                        <select class="custom-select" id="inputGroupSelect01" name="list_rib">
+                                            @if (isset($ribs) && $ribs->count() > 0)
+                                                @foreach ($ribs as $rib)
+                                                    <option value="{{$rib->id_rib}}" selected>{{$rib->name_rib}}</option>
+                                                @endforeach
+                                            @else
+                                                <option value="">Empty</option>
+                                            @endif
+                                          </select>
                                         @else
                                             <a href="{{route('addOrganizer')}}">rib list</a>
                                         </div>
-                                        <form action="" method="post">
-                                                <input type="text" class="form-control" placeholder="rib">
-                                                <button type="submit" class="btn btn-primary btn-block">add rib</button>
-                                        </form>
+                                        <input type="text" class="form-control" placeholder="name_rib" name="name_rib">
                                         @endif
                                     </div>
                                 </div>
@@ -192,7 +194,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="logo_organizer">Select Images (note better with 250x400)</label>
+                                    <label for="logo_organizer">Select Images (250x400)</label>
                                     <div class="d-flex align-items-center" >
                                         <input type="file" class="custom-file-input" style="position: absolute;" id="logo_organizer" name="logo_organizer">
                                         <div class="btn btn-outline-primary btn-block">Add Image</div>

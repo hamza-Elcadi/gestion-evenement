@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Organizer;
+use App\Models\Rib;
 class organizerController extends Controller
 {
     /**
@@ -11,7 +12,9 @@ class organizerController extends Controller
      */
     public function index()
     {
-        return view('back_end.organizer');
+        $organizers=Organizer::with('ribs')->get();
+        return view('back_end.organizer', compact('organizers'));
+
     }
 
     /**
@@ -20,7 +23,8 @@ class organizerController extends Controller
     public function create()
     {
         $addOrganizer=1;
-        return view('back_end.event',compact('addOrganizer'));
+        $ribs=Rib::all();
+        return view('back_end.event',compact('addOrganizer','ribs'));
     }
 
     /**
@@ -34,12 +38,23 @@ class organizerController extends Controller
         $organizer->name_organizer = $organizerData['name_organizer'];
         $organizer->tel_organizer = $organizerData['tel_organizer'];
         $organizer->description_organizer = $organizerData['description_organizer'];
+        if(isset($organizerData['name_rib'])){
+            $rib = new Rib();
+            $rib->name_rib = $organizerData['name_rib'];
+            $rib->save();
+            $organizer->id_rib = Rib::where('name_rib', $organizerData['name_rib'])->value('id_rib');
+        }
+        elseif(isset($organizerData['list_rib'])){
+            $organizer->id_rib = $organizerData['list_rib'];
+        }
+
         $logoImage = $request->file('logo_organizer');
         if ($logoImage) {
             $logoImageName = time() . '_' . $logoImage->getClientOriginalName();
             $logoImage->move(public_path('logo_images'), $logoImageName);
             $organizer->logo_organizer = 'logo_images/' . $logoImageName;
         }
+
         $organizer->save();
         return redirect()->route('addOrganizer')->with('success', 'Organizer added successfully');
 
