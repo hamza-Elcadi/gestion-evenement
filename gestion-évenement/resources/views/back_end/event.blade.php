@@ -142,7 +142,7 @@
                         <h4 class="card-title">Add Organizer</h4>
                         <div>
                             <a href="{{ route('event') }}" class="btn btn-primary">Event list</a>
-                            <a href="{{ route('event') }}" class="btn btn-primary">Organizer list</a>
+                            <a href="{{ route('organizer') }}" class="btn btn-primary">Organizer list</a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -221,7 +221,7 @@
                         <div class="card-header d-flex justify-content-between">
                             <h4 class="card-title">Event List</h4>
                             <div>
-                                <a href="{{ route('addOrganizer', ['addOrganizer' => 1]) }}">
+                                <a href="{{ route('addOrganizer') }}">
                                     <button type="button" class="btn btn-primary">Add Organizer</button>
                                 </a>
                                 <a href="{{ route('addEvent', ['addPartner' => 1]) }}">
