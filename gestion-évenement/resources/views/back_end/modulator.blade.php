@@ -131,7 +131,7 @@
                                         @foreach ($modulators as $modulator)
                                             <tr>
                                                 <td scope="row">
-                                                    {{-- {{ $modulator->roles->name_role }} --}}
+                                                    {{ $modulator->roles->name_role }}
                                                 </td>
                                                 <td scope="row">
                                                     {{ $modulator->name_user }}
