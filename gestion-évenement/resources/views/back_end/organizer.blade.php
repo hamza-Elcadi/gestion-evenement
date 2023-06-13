@@ -32,7 +32,7 @@
                                     Rib
                                 </th>
                                 <th>
-                                    Image
+                                    Logo
                                 </th>
                                 <th></th>
                             </thead>
@@ -53,7 +53,9 @@
                                                 {{ $organizer->ribs->name_rib }}
                                             </td>
                                             <td scope="row">
-                                                <img src="{{ $organizer->logo_organizer }}" alt="Organizer Logo">
+                                                <div style="width: 50px;">
+                                                    <img src="{{ asset($organizer->logo_organizer) }}" alt="Organizer Logo" class="img-fluid">
+                                                </div>
                                             </td>
                                             <td scope="row" class="d-flex justify-content-between">
                                                 <a href="{{ route('deleteUser', ['deletedUser_id' =>$organizer->id_organizer]) }}"><i class="fa-solid fa-trash"></i></a>
