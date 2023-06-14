@@ -71,20 +71,50 @@ class organizerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(int $update_id)
+    public function edit(string  $update_id)
     {
-        $updateOrganizer=1;
+        $editOrganizer=1;
         $organizerValue = Organizer::find($update_id);
         $ribs=Rib::all();
-        return view('back_end.organizer',compact('organizerValue','updateOrganizer','ribs'));
+        return view('back_end.organizer',compact('organizerValue','editOrganizer','ribs','update_id'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $update_id)
     {
-        //
+
+        $rib_input = $request->input('name_rib');
+        if($rib_input){
+            $rib = new Rib();
+            $rib->name_rib = $request->input('name_rib');
+            $rib->save();
+            $idRib = $rib->id_rib;
+        }
+        else{
+            $idRib = $request->input('list_rib');
+        }
+        $logoImage = $request->file('logo_organizer');
+        if($logoImage){
+            $logoImageName = time() . '_' . $logoImage->getClientOriginalName();
+            $logoImage->move(public_path('logo_images'), $logoImageName);
+            $image= 'logo_images/' . $logoImageName;
+        }
+        else{
+            $image= $request->input('old_logo_organizer');
+        }
+        $values = [
+            'name_organizer' => $request->input('name_organizer'),
+            'description_organizer' => $request->input('description_organizer'),
+            'tel_organizer' => $request->input('tel_organizer'),
+            'logo_organizer' => $image,
+            'id_rib' => $idRib,
+            'updated_at' => now(),
+
+        ];
+        Organizer::where('id_organizer', $update_id)->update($values);
+        return redirect()->route('organizer');
     }
 
     /**

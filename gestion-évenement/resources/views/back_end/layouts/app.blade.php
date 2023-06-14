@@ -268,9 +268,29 @@
             }, 3000);
         }
     </script>
+{{-- //add rib and list rib --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.ribLink').click(function(e) {
+            e.preventDefault();
+            var link = $(this);
+            var container = link.parent('.toggleContainer');
+            var select = container.siblings('.toggleContainer').find('.toggleSelect');
+            var input = container.siblings('.toggleContainer').find('.toggleInput');
 
+            select.addClass('d-none');
+            input.addClass('d-none');
 
+            container.find('.toggleSelect').removeClass('d-none');
+            container.find('.toggleInput').removeClass('d-none');
 
+            select.val('');
+            input.val('');
+
+        });
+    });
+</script>
 </body>
 
 </html>

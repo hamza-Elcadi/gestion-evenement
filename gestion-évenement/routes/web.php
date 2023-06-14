@@ -37,14 +37,16 @@ Route::get('/admin//delete/{deletedUser_id}',[dashboardController::class,'destro
 Route::get('/admin/event',[eventController::class, 'index'])->name('event');
 Route::get('/admin/event/addEvent',[eventController::class, 'index'])->name('addEvent');
 //Rib
+
 Route::get('/admin/event/organizerWithNewRib',[ribController::class, 'create'])->name('createRib');
 Route::post('/admin/event/storeRib', [ribController::class, 'store'])->name('storeRib');
-
+Route::get('/admin/event/test',[ribController::class, 'index'])->name('indexRib');
 
 //Organizer
 Route::get('/admin/organizer',[organizerController::class, 'index'])->name('organizer');
 Route::get('/admin/event/organizer',[organizerController::class, 'create'])->name('addOrganizer');
 Route::post('/admin/event/store',[organizerController::class, 'store'])->name('storeOrganizer');
-Route::get('/admin/event/Update/{update_id}',[organizerController::class, 'edit'])->name('updateOrganizer');
+Route::get('/admin/event/edit/{update_id}',[organizerController::class, 'edit'])->name('editOrganizer');
+Route::post('/admin/event/Update/{update_id}',[organizerController::class, 'update'])->name('updateOrganizer');
 
 

@@ -21,7 +21,7 @@ class ribController extends Controller
     {
         $addOrganizer=1;
         $addRib=1;
-        return view('back_end.event',compact('addOrganizer','addRib'));
+        return view('back_end.organizer',compact('addOrganizer','addRib'));
     }
 
     /**
@@ -50,7 +50,9 @@ class ribController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $addOrganizer=1;
+        $addRib=1;
+        return view('back_end.organizer',compact('addOrganizer','addRib'));
     }
 
     /**

@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                @if (isset($addOrganizer) || isset($updateOrganizer))
+                @if (isset($addOrganizer) || isset($editOrganizer))
                     @if(isset($addOrganizer))
                         <div class="card-header d-flex justify-content-between">
                             <h4 class="card-title">Add Organizer</h4>
@@ -19,7 +19,8 @@
                         <div class="card-body">
                             <form method="post" action="{{route('storeOrganizer')}}"  enctype="multipart/form-data">
                                 {{$buttonContent="Add Organizer"}}
-                    @elseif(isset($updateOrganizer))
+                                {{$update=true}}
+                    @elseif(isset($editOrganizer))
                         <div class="card-header d-flex justify-content-between">
                             <h4 class="card-title">Upadate Organizer</h4>
                             <div>
@@ -28,7 +29,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="post" action=""  enctype="multipart/form-data">
+                            <form method="post" action="{{route('updateOrganizer',['update_id' => $update_id])}}"  enctype="multipart/form-data">
                                 {{$buttonContent="Update Organizer"}}
                     @endif
                                 @csrf
@@ -47,26 +48,25 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <div class="d-flex justify-content-between">
-                                                <label for="rib">Rib</label>
 
-                                            @if(!isset($addRib))
-                                                <a href="{{route('createRib')}}">+add rib</a>
-                                            </div>
-                                            <select class="custom-select" id="inputGroupSelect01" name="list_rib" value="{{ isset($organizerValue) ? $organizerValue->id_rib : "" }}">
-                                                @if (isset($ribs) && $ribs->count() > 0)
-                                                    @foreach ($ribs as $rib)
-                                                        <option value="{{$rib->id_rib}}" selected>{{$rib->name_rib}}</option>
-                                                    @endforeach
-                                                @else
-                                                    <option value="">Empty</option>
-                                                @endif
-                                            </select>
-                                            @else
-                                                <a href="{{route('addOrganizer')}}">rib list</a>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="name_rib" name="name_rib">
-                                            @endif
+                                                <label for="rib">Rib</label>
+                                                <div id="ribContainer" class="toggleContainer">
+
+                                                    <select class="custom-select toggleSelect" id="inputGroupSelect01" name="list_rib" value="{{ isset($organizerValue) ? $organizerValue->id_rib : "" }}">
+                                                        @if (isset($ribs) && $ribs->count() > 0)
+                                                            @foreach ($ribs as $rib)
+                                                                <option value="{{$rib->id_rib}}" {{ isset($organizerValue) && $organizerValue->id_rib == $rib->id_rib ? 'selected' : '' }}>{{$rib->name_rib}}</option>
+                                                            @endforeach
+                                                        @else
+                                                            <option value="">Empty</option>
+                                                        @endif
+                                                    </select>
+
+                                                    <a href="#" class="toggleLink ribLink">+ Add Rib</a>
+                                                    <input type="text" class="form-control toggleInput d-none" placeholder="name_rib" name="name_rib">
+
+                                                </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +74,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="description_organizer">Description</label>
-                                            <textarea class="form-control" id="description_organizer" placeholder="description_organizer" name="description_organizer" value="{{ isset($organizerValue) ? $organizerValue->description_organizer : "" }}"></textarea>
+                                            <textarea class="form-control" id="description_organizer" placeholder="description_organizer" name="description_organizer">{{ isset($organizerValue) ? $organizerValue->description_organizer : "" }}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -156,7 +156,7 @@
                                             </td>
                                             <td scope="row" class="d-flex justify-content-between">
                                                 <a href="{{ route('deleteUser', ['deletedUser_id' =>$organizer->id_organizer]) }}"><i class="fa-solid fa-trash"></i></a>
-                                                <a href="{{ route('updateOrganizer', ['update_id' =>$organizer->id_organizer]) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a href="{{ route('editOrganizer', ['update_id' =>$organizer->id_organizer]) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                                             </td>
 
                                         </tr>
