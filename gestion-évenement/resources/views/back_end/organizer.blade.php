@@ -155,12 +155,18 @@
                                                 </div>
                                             </td>
                                             <td scope="row" class="d-flex justify-content-between">
-                                                <a href="{{ route('deleteUser', ['deletedUser_id' =>$organizer->id_organizer]) }}"><i class="fa-solid fa-trash"></i></a>
+                                                <a href="{{ route('deleteOrganizer', ['delete_id' =>$organizer->id_organizer]) }}"><i class="fa-solid fa-trash"></i></a>
                                                 <a href="{{ route('editOrganizer', ['update_id' =>$organizer->id_organizer]) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                                             </td>
 
                                         </tr>
                                     @endforeach
+                                    {{-- @if (session('success')) --}}
+                                        <div id="successMessage" class="alert alert-success ml-auto mr-auto fade show">
+                                            {{-- {{ session('success') }} --}} hello world
+                                            <button type="button" class="close pl-4 position-relative top-0"data-dismiss="alert">&times;</button>
+                                        </div>
+                                    {{-- @endif --}}
                                 @else
                                     <tr class="mx-auto" scope="row">
                                         <td colspan="5" class="p-3 mb-2 bg-info text-white " role="alert">

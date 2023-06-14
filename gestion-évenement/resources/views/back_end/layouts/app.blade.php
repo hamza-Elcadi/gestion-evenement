@@ -264,8 +264,8 @@
                 successMessage.style.opacity = '0';
                 setTimeout(function() {
                     successMessage.style.display = 'none';
-                }, 500);
-            }, 3000);
+                },450);
+            }, 1000);
         }
     </script>
 {{-- //add rib and list rib --}}

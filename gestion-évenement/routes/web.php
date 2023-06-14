@@ -48,5 +48,6 @@ Route::get('/admin/event/organizer',[organizerController::class, 'create'])->nam
 Route::post('/admin/event/store',[organizerController::class, 'store'])->name('storeOrganizer');
 Route::get('/admin/event/edit/{update_id}',[organizerController::class, 'edit'])->name('editOrganizer');
 Route::post('/admin/event/Update/{update_id}',[organizerController::class, 'update'])->name('updateOrganizer');
+Route::get('/admin/event/delete/{delete_id}',[organizerController::class, 'destroy'])->name('deleteOrganizer');
 
 

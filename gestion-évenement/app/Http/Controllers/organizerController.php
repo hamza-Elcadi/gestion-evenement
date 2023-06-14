@@ -120,8 +120,10 @@ class organizerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $delete_id)
     {
-        //
+        $organizer=Organizer::find($delete_id);
+        $organizer->delete();
+        return redirect()->back()->with('success', 'Organizer deleted successfully');;
     }
 }
