@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Organizer;
 use App\Models\Rib;
+use Illuminate\Support\Facades\Storage;
 class organizerController extends Controller
 {
     /**
@@ -123,7 +124,14 @@ class organizerController extends Controller
     public function destroy(string $delete_id)
     {
         $organizer=Organizer::find($delete_id);
+        if ($organizer) {
+            // Delete the image file
+            $imagePath = $organizer->logo_organizer;
+            if ($imagePath && Storage::disk('public')->exists($imagePath)) {
+                Storage::disk('public')->delete($imagePath);
+            }
         $organizer->delete();
-        return redirect()->back()->with('success', 'Organizer deleted successfully');;
+        return redirect()->back()->with('success', 'Organizer deleted successfully');
+        }
     }
 }

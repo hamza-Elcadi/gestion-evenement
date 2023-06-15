@@ -18,8 +18,10 @@
                         </div>
                         <div class="card-body">
                             <form method="post" action="{{route('storeOrganizer')}}"  enctype="multipart/form-data">
-                                {{$buttonContent="Add Organizer"}}
-                                {{$update=true}}
+                                @php
+                                    $buttonContent = "Add Organizer";
+                                    $update = true;
+                                @endphp
                     @elseif(isset($editOrganizer))
                         <div class="card-header d-flex justify-content-between">
                             <h4 class="card-title">Upadate Organizer</h4>
@@ -30,7 +32,9 @@
                         </div>
                         <div class="card-body">
                             <form method="post" action="{{route('updateOrganizer',['update_id' => $update_id])}}"  enctype="multipart/form-data">
-                                {{$buttonContent="Update Organizer"}}
+                                @php
+                                    $buttonContent="Update Organizer"
+                                @endphp
                     @endif
                                 @csrf
                                 <div class="row">
@@ -80,7 +84,7 @@
                                     <div class="col-md-6">
                                         <label for="logo_organizer">Select Images (250x400)</label>
                                         <div class="d-flex align-items-center" >
-                                            <input type="file" class="custom-file-input" style="position: absolute;" id="logo_organizer" name="logo_organizer">
+                                            <input type="file" class="custom-file-input logoOrImage" style="position: absolute;" id="logo_organizer" name="logo_organizer">
                                             <input type="hidden" name="old_logo_organizer" value="{{ isset($organizerValue) ? $organizerValue->logo_organizer : "" }}">
                                             <div class="btn btn-outline-primary btn-block">Add Image</div>
 
@@ -161,12 +165,12 @@
 
                                         </tr>
                                     @endforeach
-                                    {{-- @if (session('success')) --}}
+                                    @if (session('success'))
                                         <div id="successMessage" class="alert alert-success ml-auto mr-auto fade show">
-                                            {{-- {{ session('success') }} --}} hello world
+                                            {{session('success')}}
                                             <button type="button" class="close pl-4 position-relative top-0"data-dismiss="alert">&times;</button>
                                         </div>
-                                    {{-- @endif --}}
+                                    @endif
                                 @else
                                     <tr class="mx-auto" scope="row">
                                         <td colspan="5" class="p-3 mb-2 bg-info text-white " role="alert">

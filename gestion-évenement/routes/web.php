@@ -44,10 +44,19 @@ Route::get('/admin/event/test',[ribController::class, 'index'])->name('indexRib'
 
 //Organizer
 Route::get('/admin/organizer',[organizerController::class, 'index'])->name('organizer');
-Route::get('/admin/event/organizer',[organizerController::class, 'create'])->name('addOrganizer');
-Route::post('/admin/event/store',[organizerController::class, 'store'])->name('storeOrganizer');
-Route::get('/admin/event/edit/{update_id}',[organizerController::class, 'edit'])->name('editOrganizer');
-Route::post('/admin/event/Update/{update_id}',[organizerController::class, 'update'])->name('updateOrganizer');
-Route::get('/admin/event/delete/{delete_id}',[organizerController::class, 'destroy'])->name('deleteOrganizer');
+Route::get('/admin/organizer/create',[organizerController::class, 'create'])->name('addOrganizer');
+Route::post('/admin/organizer/store',[organizerController::class, 'store'])->name('storeOrganizer');
+Route::get('/admin/organizer/edit/{update_id}',[organizerController::class, 'edit'])->name('editOrganizer');
+Route::post('/admin/organizer/Update/{update_id}',[organizerController::class, 'update'])->name('updateOrganizer');
+Route::get('/admin/organizer/delete/{delete_id}',[organizerController::class, 'destroy'])->name('deleteOrganizer');
+
+//partner
+Route::get('/admin/partner',[partnerController::class, 'index'])->name('partner');
+Route::get('/admin/partner/create',[partnerController::class, 'create'])->name('addPartner');
+Route::post('/admin/partner/store',[partnerController::class, 'store'])->name('storePartner');
+Route::get('/admin/partner/edit/{update_id}',[partnerController::class, 'edit'])->name('editPartner');
+Route::post('/admin/partner/Update/{update_id}',[partnerController::class, 'update'])->name('updatePartner');
+Route::get('/admin/partner/delete/{delete_id}',[partnerController::class, 'destroy'])->name('deletePartner');
+
 
 

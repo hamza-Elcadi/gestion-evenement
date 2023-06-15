@@ -69,16 +69,16 @@
                             <p>Organizers</p>
                         </a>
                     </li>
+                    <li @yield('classPartnerActive')>
+                        <a href="{{route('partner')}}">
+                            <i class="fa-solid fa-handshake"></i>
+                            <p>Partners</p>
+                        </a>
+                    </li>
                     <li @yield('class-Active')>
                         <a href="./user.html">
                             <i class="nc-icon nc-single-02"></i>
                             <p>User Profile</p>
-                        </a>
-                    </li>
-                    <li @yield('class-Active')>
-                        <a href="./tables.html">
-                            <i class="nc-icon nc-tile-56"></i>
-                            <p>Table List</p>
                         </a>
                     </li>
                     <li @yield('class-Active')>
@@ -215,7 +215,7 @@
     </script>
     <script>
         // Get the file input element
-        const fileInput = document.getElementById('logo_organizer');
+        const fileInput = document.getElementsByClassName('logoOrImage')[0];
 
         // Listen for file selection
         fileInput.addEventListener('change', handleFileSelect, false);

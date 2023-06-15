@@ -144,7 +144,7 @@
                                 <a href="{{ route('addOrganizer') }}">
                                     <button type="button" class="btn btn-primary">Add Organizer</button>
                                 </a>
-                                <a href="{{ route('addEvent', ['addPartner' => 1]) }}">
+                                <a href="{{ route('addPartner') }}">
                                     <button type="button" class="btn btn-primary">Add Partner</button>
                                 </a>
                                 <a href="{{ route('addEvent', ['addEvent' => 1]) }}">
