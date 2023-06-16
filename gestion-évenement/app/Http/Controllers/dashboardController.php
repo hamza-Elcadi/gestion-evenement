@@ -6,6 +6,7 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 
@@ -35,6 +36,10 @@ class dashboardController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name_user' => 'required|unique:users',
+        ]);
+
         $user = new User();
         $user->name_user = $request->input('name_user');
         $user->cin = $request->input('cin');
@@ -89,6 +94,9 @@ class dashboardController extends Controller
      */
     public function update(Request $request, int $updatedUser_id)
     {
+        $validated = $request->validate([
+            'name_user' => 'required|unique:users,name_user,'.$updatedUser_id.',id_user',
+        ]);
         // $userData = $request->all();
         // $request['updated_at'] = now();
         // $request['remember_token'] = Str::random(10);
@@ -110,4 +118,14 @@ class dashboardController extends Controller
         $user->delete();
         return redirect()->back();
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        // Perform any additional logout tasks if necessary
+        // For example, clearing the user session
+
+        return redirect()->route('login');
+    }
+
 }

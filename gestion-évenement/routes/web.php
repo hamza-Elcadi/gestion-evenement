@@ -24,18 +24,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::middleware(['web'])->group(function () {
-    Route::get('/admin', [loginController::class, 'index']);
+    Route::get('/login', [loginController::class, 'index'])->name('login');
     Route::post('/check', [loginController::class, 'check'])->name('loginValide');
 });
-Route::get('/admin/dashboard',[dashboardController::class, 'index'])->name('dashboard');
+Route::get('/admin',[dashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 Route::get('/admin/modulator',[dashboardController::class, 'showAll'])->name('modulator');
 Route::post('/admin/addModulator',[dashboardController::class, 'store'])->name('createModulator');
 Route::get('/admin/editModulator/{updatedUser_id}',[dashboardController::class, 'edit'])->name('editModulator');
 Route::post('/admin/updateModulator/{updatedUser_id}',[dashboardController::class, 'update'])->name('updateModulator');
 Route::get('/admin//delete/{deletedUser_id}',[dashboardController::class,'destroy'])->name('deleteUser');
+Route::post('/logout', [dashboardController::class,'logout'])->name('logout');
+
 //Event
 Route::get('/admin/event',[eventController::class, 'index'])->name('event');
-Route::get('/admin/event/addEvent',[eventController::class, 'index'])->name('addEvent');
+Route::get('/admin/event/addEvent',[eventController::class, 'create'])->name('addEvent');
+Route::post('/admin/event/store',[eventController::class, 'store'])->name('storeEvent');
+Route::get('/admin/event/edit/{update_id}',[eventController::class, 'edit'])->name('editEvent');
+Route::post('/admin/event/update/{update_id}',[eventController::class, 'update'])->name('updateEvent');
+Route::get('/admin/event/delete/{delete_id}',[eventController::class, 'destroy'])->name('deleteEvent');
+
+
+
+
 //Rib
 
 Route::get('/admin/event/organizerWithNewRib',[ribController::class, 'create'])->name('createRib');

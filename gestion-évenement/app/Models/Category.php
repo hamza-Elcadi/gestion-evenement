@@ -11,6 +11,6 @@ class Category extends Model
     use HasFactory;
     public function events(): hasMany
     {
-        return $this->hasMany(Event::class);
+        return $this->hasMany(Event::class,'id_event');
     }
 }

@@ -47,7 +47,7 @@
                                     <div class="col-md-6">
                                         <label for="image_partner">Select Image (250x400)</label>
                                         <div class="d-flex align-items-center" >
-                                            <input type="file" class="custom-file-input logoOrImage" style="position: absolute;" id="image_partner logoOrImage" name="image_partner">
+                                            <input type="file" class="custom-file-input logoOrImage" style="position: absolute;" id="image_partner" name="image_partner">
                                             <input type="hidden" name="old_image_partner" value="{{ isset($partnerValue) ? $partnerValue->image_partner : "" }}">
                                             <div class="btn btn-outline-primary btn-block">Add Image</div>
                                             <div id="previewContainer" style="width: 100px;"><img src="{{ isset($partnerValue) ? asset($partnerValue->image_partner) : "" }}" class="img-fluid"></div>

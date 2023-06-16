@@ -57,12 +57,6 @@
                             <p>MODULATOR</p>
                         </a>
                     </li>
-                    <li @yield('classEventActive')>
-                        <a href="{{ route('event') }}">
-                            <i class="fa-solid fa-calendar-days"></i>
-                            <p>Events</p>
-                        </a>
-                    </li>
                     <li @yield('classOrganizerActive')>
                         <a href="{{route('organizer')}}">
                             <i class="fa-solid fa-sitemap"></i>
@@ -75,22 +69,16 @@
                             <p>Partners</p>
                         </a>
                     </li>
+                    <li @yield('classEventActive')>
+                        <a href="{{ route('event') }}">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <p>Events</p>
+                        </a>
+                    </li>
                     <li @yield('class-Active')>
                         <a href="./user.html">
                             <i class="nc-icon nc-single-02"></i>
-                            <p>User Profile</p>
-                        </a>
-                    </li>
-                    <li @yield('class-Active')>
-                        <a href="./typography.html">
-                            <i class="nc-icon nc-caps-small"></i>
-                            <p>Typography</p>
-                        </a>
-                    </li>
-                    <li class="active-pro">
-                        <a href="./upgrade.html">
-                            <i class="nc-icon nc-spaceship"></i>
-                            <p>Upgrade to PRO</p>
+                            <p>Profile</p>
                         </a>
                     </li>
                 </ul>
@@ -108,7 +96,9 @@
                                     <span class="navbar-toggler-bar bar3"></span>
                                 </button>
                             </div>
-                            <a class="navbar-brand" href="javascript:;">ADMIN</a>
+                            @auth
+                            <a class="navbar-brand" href="javascript:;">{{ Auth::user()->name_user; }}</a>
+                            @endauth
                         </div>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                             aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,49 +107,33 @@
                             <span class="navbar-toggler-bar navbar-kebab"></span>
                         </button>
                         <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                            <form>
-                                <div class="input-group no-border">
-                                    <input type="text" value="" class="form-control" placeholder="Search...">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <i class="nc-icon nc-zoom-split"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
                             <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link btn-magnify" href="javascript:;">
-                                        <i class="nc-icon nc-layout-11"></i>
-                                        <p>
-                                            <span class="d-lg-none d-md-block">Stats</span>
-                                        </p>
-                                    </a>
-                                </li>
                                 <li class="nav-item btn-rotate dropdown">
                                     <a class="nav-link dropdown-toggle" href="http://example.com"
                                         id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">
-                                        <i class="nc-icon nc-bell-55"></i>
+                                        <i class="fa-solid fa-user"></i>
                                         <p>
-                                            <span class="d-lg-none d-md-block">Some Actions</span>
+                                            <span class="d-lg-none d-md-block">Settings</span>
                                         </p>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right"
                                         aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <a class="dropdown-item" href="#">Profile</a>
+                                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
                                     </div>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link btn-rotate" href="javascript:;">
-                                        <i class="nc-icon nc-settings-gear-65"></i>
+                                        <i class="fa-solid fa-user"></i>
                                         <p>
                                             <span class="d-lg-none d-md-block">Account</span>
                                         </p>
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>
@@ -287,7 +261,23 @@
 
             select.val('');
             input.val('');
+        });
 
+        $('.categoryLink').click(function(e) {
+            e.preventDefault();
+            var link = $(this);
+            var container = link.parent('.toggleContainer');
+            var select = container.siblings('.toggleContainer').find('.toggleSelect');
+            var input = container.siblings('.toggleContainer').find('.toggleInput');
+
+            select.addClass('d-none');
+            input.addClass('d-none');
+
+            container.find('.toggleSelect').removeClass('d-none');
+            container.find('.toggleInput').removeClass('d-none');
+
+            select.val('');
+            input.val('');
         });
     });
 </script>

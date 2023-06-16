@@ -16,7 +16,11 @@ class loginController extends Controller
      */
     public function index()
     {
-        return view('back_end.login');
+        if (Auth::user()) {
+            return redirect()->intended('admin');
+        } else {
+            return view('back_end.login');
+        }
     }
 
     /**
@@ -29,25 +33,25 @@ class loginController extends Controller
     // }
     public function check(Request $request)
     {
+        $credentials = $request->validate([
+            'name_user' => ['required'],
+            'password' => ['required'],
+        ]);
 
-        $username=$request->input('username');
-        $password=$request->input('password');
-
-        $user = User::where('name_user', $username)
-                ->where('pw_user', $password)
-                ->get();
-
-
-        if ($user->isNotEmpty()) {
-            $request->session()->put('last_activity', time());
-            return redirect()->route('dashboard');
-        } else {
-            return back()->withErrors([
-                'message' => 'Invalid username or password.',
-            ]);
+        $user = User::where('name_user', $credentials['name_user'])->first();
+        // dd(Hash::check($credentials['password'], $user->pw_user));
+        if ($user && Hash::check($credentials['password'], $user->pw_user)) {
+            Auth::login($user);
+            $request->session()->regenerate();
+            return redirect()->intended('admin');
         }
 
+        return back()->withErrors([
+            'login' => 'The provided credentials do not match our records.',
+        ])->withInput($request->only('name_user'));
     }
+
+
 
     /**
      * Log the user out of the application.

@@ -11,6 +11,6 @@ class Partner extends Model
     use HasFactory;
     public function events(): belongsToMany
     {
-        return $this->belongsToMany(Event::class);
+        return $this->belongsToMany(Event::class,'event_partner', 'id_event', 'id_partner');
     }
 }
