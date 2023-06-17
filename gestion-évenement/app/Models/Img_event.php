@@ -12,6 +12,6 @@ class Img_event extends Model
     use HasFactory;
     public function events(): BelongsTo
     {
-        return $this->belongsTo(Event::class);
+        return $this->belongsTo(Event::class,'id_event');
     }
 }

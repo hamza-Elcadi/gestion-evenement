@@ -14,5 +14,6 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // User::factory(1)->create();
+        User::create(['name_user' => 'admin','cin' => 'EB000000','tel_user' => '+212 60000000','pw_user' => 'admin','id_role' => '1']);
     }
 }

@@ -45,18 +45,22 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li @yield('classDashboardActive')>
-                        <a href="{{ route('dashboard') }}">
-                            <i class="nc-icon nc-bank"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
+
+                        <li @yield('classDashboardActive')>
+                            <a href="{{ route('dashboard') }}">
+                                <i class="nc-icon nc-bank"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+
+                    @if (Auth::user()->id_role=='1')
                     <li @yield('classModulatorActive')>
                         <a href="{{ route('modulator') }}">
                             <i class="fa-solid fa-users"></i>
                             <p>MODULATOR</p>
                         </a>
                     </li>
+                    @endif
                     <li @yield('classOrganizerActive')>
                         <a href="{{route('organizer')}}">
                             <i class="fa-solid fa-sitemap"></i>
@@ -75,8 +79,8 @@
                             <p>Events</p>
                         </a>
                     </li>
-                    <li @yield('class-Active')>
-                        <a href="./user.html">
+                    <li @yield('classProfileActive')>
+                        <a href="{{ route('profile') }}">
                             <i class="nc-icon nc-single-02"></i>
                             <p>Profile</p>
                         </a>
@@ -90,14 +94,14 @@
                     <div class="container-fluid">
                         <div class="navbar-wrapper">
                             <div class="navbar-toggle">
-                                <button type="button" class="navbar-toggler">
+                                <button type="button" class="navbar-toggler menuToggle">
                                     <span class="navbar-toggler-bar bar1"></span>
                                     <span class="navbar-toggler-bar bar2"></span>
                                     <span class="navbar-toggler-bar bar3"></span>
                                 </button>
                             </div>
                             @auth
-                            <a class="navbar-brand" href="javascript:;">{{ Auth::user()->name_user; }}</a>
+                                <a class="navbar-brand" href="javascript:;">{{ Auth::user()->name_user; }}</a>
                             @endauth
                         </div>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
@@ -119,7 +123,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right"
                                         aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Profile</a>
+                                        <a class="dropdown-item" href="{{route('profile')}}">Profile</a>
                                         <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             @csrf
@@ -281,6 +285,16 @@
         });
     });
 </script>
+{{-- //menu open and close --}}
+<script>
+    $(document).ready(function () {
+        // Add click event listener to navbar-toggler button
+        $('.navbar-toggler').on('click', function () {
+            $('body').toggleClass('nav-open');
+        });
+    });
+</script>
+
 </body>
 
 </html>

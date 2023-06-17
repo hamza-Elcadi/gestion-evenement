@@ -7,6 +7,7 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\eventController;
 use App\Http\Controllers\organizerController;
 use App\Http\Controllers\partnerController;
+use App\Http\Controllers\profileController;
 use App\Http\Controllers\ribController;
 
 /*
@@ -68,5 +69,8 @@ Route::get('/admin/partner/edit/{update_id}',[partnerController::class, 'edit'])
 Route::post('/admin/partner/Update/{update_id}',[partnerController::class, 'update'])->name('updatePartner');
 Route::get('/admin/partner/delete/{delete_id}',[partnerController::class, 'destroy'])->name('deletePartner');
 
+//profile
+Route::get('/admin/profil',[profileController::class, 'index'])->middleware('auth')->name('profile');
+Route::post('/admin/profile/update/{update_id}',[profileController::class, 'update'])->name('updateProfile');
 
 

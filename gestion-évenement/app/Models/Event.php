@@ -36,11 +36,11 @@ class Event extends Model
 
     public function partners(): belongsToMany
     {
-        return $this->belongsToMany(Partner::class);
+        return $this->belongsToMany(Partner::class,'event_partner', 'id_event', 'id_partner');
     }
     public function img_events(): hasMany
     {
-        return $this->hasMany(Img_event::class);
+        return $this->hasMany(Img_event::class,'id_image');
     }
     public function organizers(): belongsTo
     {

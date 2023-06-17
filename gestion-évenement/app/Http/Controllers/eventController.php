@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Event;
+use App\Models\Img_event;
 use App\Models\Organizer;
 use App\Models\Partner;
 use Illuminate\Http\Request;
@@ -15,9 +16,10 @@ class eventController extends Controller
      */
     public function index()
     {
+        $images = Img_event::all();
+        $events=Event::with('categories','organizers','partners')->get();
 
-        $events=Event::with('categories','organizers')->get();
-        return view('back_end.event',compact('events'));
+        return view('back_end.event',compact('events','images'));
     }
 
     /**
@@ -30,6 +32,7 @@ class eventController extends Controller
         $organizers = Organizer::all();
         $categories = Category::all();
         // dd($partners);
+
         return view('back_end.event',compact('addEvent', 'partners', 'organizers', 'categories'));
     }
 
@@ -51,9 +54,20 @@ class eventController extends Controller
         }else{
             $event->id_category = $eventData['id_category'];
         }
+        $uploadImages = $request->file('uploadImage');
+        if ($uploadImages) {
+            foreach($uploadImages as $uploadImage){
+                $uploadImageName = time() . '_' . $uploadImage->getClientOriginalName();
+                $uploadImage->move(public_path('back-end/images/events'), $uploadImageName);
+                $image= new Img_event();
+                $image->name_image = 'back-end/images/events/' . $uploadImageName;
+                $image->id_event = $event->id_event;
+                $image->save();
+            }
+        }
 
         $event->save();
-
+        // dd($eventData['id_partner']);
         $partner = Partner::find($eventData['id_partner']);
         // $event->partners()->attach(['id_event' => $partner->id_event , 'id_partner' => $partner->id_partner]);
         $event->partners()->attach($partner, ['id_event' => $event->id_event, 'id_partner' => $partner->id_partner]);
@@ -75,7 +89,7 @@ class eventController extends Controller
     public function edit(string  $update_id)
     {
         $editEvent=1;
-        $eventValue = Event::find($update_id);
+        $eventValue = Event::with('partners', 'img_event')->find($update_id);
         $partners = Partner::all();
         $organizers = Organizer::all();
         $categories = Category::all();
@@ -87,7 +101,7 @@ class eventController extends Controller
      */
     public function update(Request $request, string $update_id)
     {
-        //
+
     }
 
     /**
