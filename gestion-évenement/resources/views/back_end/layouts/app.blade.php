@@ -60,6 +60,11 @@
                             <p>MODULATOR</p>
                         </a>
                     </li>
+                    @elseif(Auth::user()->id_role==null)
+                        @php
+                         return redirect()->route('login');
+                        exit;
+                        @endphp
                     @endif
                     <li @yield('classOrganizerActive')>
                         <a href="{{route('organizer')}}">

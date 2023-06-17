@@ -33,8 +33,9 @@
                                     </div>
                                     <div class="card-body">
                                         <form method="post"
-                                            action="{{ route('updatePartner', ['update_id' => $update_id]) }}"
+                                            action="{{ route('updateEvent', ['update_id' => $update_id]) }}"
                                             enctype="multipart/form-data">
+                                            @csrf
                                             @php
                                                 $buttonContent = 'Update Event';
                                             @endphp
@@ -67,8 +68,8 @@
                                 <div class="col-md-6 pl-1">
                                     <div class="form-group">
                                         <label for="date_start">Date Start</label>
-                                        <input type="date" class="form-control" name="date_start" id="datepicker"
-                                            value="{{ isset($eventValue) ? $eventValue->date_start : '' }}">
+                                        <input type="date" class="form-control" name="date_start" id="datepicker" value="{{ isset($eventValue) ? $eventValue->date_start : '' }}">
+
                                         {{-- <input type="text" class="form-control" placeholder="Tel" name="tel_user" value="{{ isset($modulator1) ? $modulator1->tel_user : '' }}"> --}}
                                     </div>
                                 </div>
@@ -77,8 +78,7 @@
                                 <div class="col-md-6 pr-1">
                                     <div class="form-group">
                                         <label for="nbr_place">Number of places</label>
-                                        <input name="nbr_place" id="nbr_place" type="text" class="form-control"
-                                            placeholder="Places Number" value="{{ isset($eventValue) ? $eventValue->nbr_palce : '' }}">
+                                        <input name="nbr_place" id="nbr_place" type="text" class="form-control" placeholder="Places Number" value="{{ isset($eventValue) ? $eventValue->nbr_place : '' }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6 pl-1">
@@ -140,7 +140,7 @@
                                                 @if (isset($categories) && $categories->count() > 0)
                                                     @foreach ($categories as $category)
                                                         <option value="{{ $category->id_category }}"
-                                                            {{ isset($eventValue) && $eventValue->id_category == $category->id_category ? 'checked' : '' }}>
+                                                            {{ isset($eventValue) && $eventValue->id_category == $category->id_category ? 'selected' : '' }}>
                                                             {{ $category->name_category }}</option>
                                                     @endforeach
                                                 @else
@@ -166,7 +166,7 @@
                                         <h3>Images </h3>
                                     </label>
                                     <input type="file" class="custom-file-input logoOrImage" id="imageUpload" name="uploadImage" multiple>
-                                    <input type="hidden" name="old_imageUpload" value="{{ isset($eventValue) ? $eventValue->img_events->name_image : "" }}">
+                                    <input type="hidden" name="old_imageUpload" value="">
                                     <div id="previewContainer"></div>
                                 </div>
                             </div>

@@ -89,10 +89,11 @@ class eventController extends Controller
     public function edit(string  $update_id)
     {
         $editEvent=1;
-        $eventValue = Event::with('partners', 'img_event')->find($update_id);
+        $eventValue = Event::with('partners', 'img_events')->find($update_id);
         $partners = Partner::all();
         $organizers = Organizer::all();
         $categories = Category::all();
+// dd($eventValue);
         return view('back_end.event',compact('editEvent', 'eventValue', 'partners', 'organizers', 'categories','update_id'));
     }
 
@@ -101,7 +102,21 @@ class eventController extends Controller
      */
     public function update(Request $request, string $update_id)
     {
+        $values = [
+            'title_event' => $request->input('title_event'),
+            'description_event' => $request->input('description_event'),
+            'date_start' => $request->input('date_start'),
+            'duration' => $request->input('duration'),
+            'location' => $request->input('location'),
+            'nbr_place' => $request->input('nbr_place'),
+            'id_organizer' => $request->input('id_organizer'),
+            'id_category' => $request->input('id_category'),
+            'updated_at' => now(),
 
+        ];
+
+        Event::where('id_event', $update_id)->update($values);
+        return redirect()->route('event');
     }
 
     /**
