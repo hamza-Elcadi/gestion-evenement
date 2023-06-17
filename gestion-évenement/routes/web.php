@@ -22,7 +22,7 @@ use App\Http\Controllers\ribController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('front_end.layouts.app');
 });
 Route::middleware(['web'])->group(function () {
     Route::get('/login', [loginController::class, 'index'])->name('login');

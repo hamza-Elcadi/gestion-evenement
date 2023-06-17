@@ -1,3 +1,6 @@
+@php
+    $link = 'front-end/assets';
+@endphp
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,11 +16,11 @@
         <meta name="generator" content="Themefisher Novena HTML Template v1.0">
         <meta name="theme-name" content="novena" />
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png" />
-        <link rel="stylesheet" href="{{ asset('css/plugins/bootstrap/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/plugins/icofont/icofont.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/plugins/slick-carousel/slick/slick.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/plugins/slick-carousel/slick/slick-theme.css')}}">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset($link.'css/plugins/bootstrap/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset($link.'css/plugins/icofont/icofont.min.css') }}">
+        <link rel="stylesheet" href="{{ asset($link.'css/plugins/slick-carousel/slick/slick.css') }}">
+        <link rel="stylesheet" href="{{ asset($link.'css/plugins/slick-carousel/slick/slick-theme.css')}}">
+        <link rel="stylesheet" href="{{ asset($link.'css/style.css') }}">
     </head>
     <body id="top">
         <header>
@@ -196,12 +199,12 @@
                 </div>
             </div>
         </footer>
-        <script src="{{ asset('js/app.js') }}"></script>
-        <script src="{{ asset('js/plugins/bootstrap/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('js/plugins/google-map/gmap.jsapp.js') }}"></script>
-        <script src="{{ asset('js/plugins/jquery/jquery.js') }}"></script>
-        <script src="{{ asset('js/plugins/shuffle/shuffle.min.js') }}"></script>
-        <script src="{{ asset('js/plugins/slick-carousel/slick/slick.min.js') }}"></script>
+        <script src="{{ asset($link.'js/app.js') }}"></script>
+        <script src="{{ asset($link.'js/plugins/bootstrap/bootstrap.min.js') }}"></script>
+        <script src="{{ asset($link.'js/plugins/google-map/gmap.jsapp.js') }}"></script>
+        <script src="{{ asset($link.'js/plugins/jquery/jquery.js') }}"></script>
+        <script src="{{ asset($link.'js/plugins/shuffle/shuffle.min.js') }}"></script>
+        <script src="{{ asset($link.'js/plugins/slick-carousel/slick/slick.min.js') }}"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA"></script>
     </body>
 </html>
