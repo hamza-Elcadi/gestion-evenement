@@ -22,8 +22,9 @@ use App\Http\Controllers\ribController;
 */
 
 Route::get('/', function () {
-    return view('front_end.layouts.app');
+    return view('front_end.acceuil');
 });
+// Route::get('/',[acceuilController::class, 'index'])->name('acceuil');
 Route::middleware(['web'])->group(function () {
     Route::get('/login', [loginController::class, 'index'])->name('login');
     Route::post('/check', [loginController::class, 'check'])->name('loginValide');
