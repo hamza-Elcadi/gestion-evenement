@@ -1,5 +1,5 @@
 @php
-    $link = 'back-end/login';
+    $link = 'backEnd/login';
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -53,14 +53,14 @@
                             </a>
                         </li>
 
-                    @if (Auth::user()->id_role=='1')
+                    @if (Auth::user()->role_user=='admin')
                     <li @yield('classModulatorActive')>
                         <a href="{{ route('modulator') }}">
                             <i class="fa-solid fa-users"></i>
                             <p>MODULATOR</p>
                         </a>
                     </li>
-                    @elseif(Auth::user()->id_role==null)
+                    @elseif(Auth::user()==null)
                         @php
                          return redirect()->route('login');
                         exit;

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Event;
-use App\Models\Img_event;
+use App\Models\ImageEvent;
 use App\Models\Organizer;
 use App\Models\Partner;
 use Illuminate\Http\Request;
@@ -16,10 +16,10 @@ class eventController extends Controller
      */
     public function index()
     {
-        $images = Img_event::all();
-        $events=Event::with('categories','organizers','partners')->get();
-
-        return view('back_end.event',compact('events','images'));
+        // $images = ImageEvent::all();
+        // $events=Event::with('categories','organizers','partners')->get();
+        $events = Event::with('partners', 'organizers', 'categories', 'ImageEvents')->get();
+        return view('back_end.event',compact('events'));
     }
 
     /**
@@ -48,29 +48,38 @@ class eventController extends Controller
         $event = new Event($eventData);
         $event->id_organizer = $eventData['id_organizer'];
         if($eventData['id_categoryNew'] != null){
-            $category = new Category($eventData['id_categoryNew']);
+            // dd($eventData);
+            $category = new Category(['name_category' => $eventData['id_categoryNew']]);
             $category->save();
             $event->id_category = $category->id_category;
         }else{
             $event->id_category = $eventData['id_category'];
         }
+
+
+
+        $event->save();
         $uploadImages = $request->file('uploadImage');
         if ($uploadImages) {
+            // dd($uploadImages);
             foreach($uploadImages as $uploadImage){
                 $uploadImageName = time() . '_' . $uploadImage->getClientOriginalName();
-                $uploadImage->move(public_path('back-end/images/events'), $uploadImageName);
-                $image= new Img_event();
-                $image->name_image = 'back-end/images/events/' . $uploadImageName;
+                $uploadImage->move(public_path('backEnd/images/events'), $uploadImageName);
+                $image= new ImageEvent();
+                $image->name_image = 'backEnd/images/events/' . $uploadImageName;
                 $image->id_event = $event->id_event;
                 $image->save();
             }
         }
-
-        $event->save();
         // dd($eventData['id_partner']);
-        $partner = Partner::find($eventData['id_partner']);
+
+        $partners = Partner::find($eventData['id_partner']);
+        // dd($partner);
+        for($i=0;$i<$partners->count(); $i++){
+            $event->partners()->attach($partners[$i], ['id_event' => $event->id_event, 'id_partner' => $partners[$i]->id_partner]);
+        }
         // $event->partners()->attach(['id_event' => $partner->id_event , 'id_partner' => $partner->id_partner]);
-        $event->partners()->attach($partner, ['id_event' => $event->id_event, 'id_partner' => $partner->id_partner]);
+
         // dd($eventData);
         return redirect()->route('event')->with('success', 'Event added successfully');
     }

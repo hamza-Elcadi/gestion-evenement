@@ -39,8 +39,8 @@ class partnerController extends Controller
         $image_partner = $request->file('image_partner');
         if ($image_partner) {
             $image_partner_name = time() . '_' . $image_partner->getClientOriginalName();
-            $image_partner->move(public_path('back-end/images/partners'), $image_partner_name);
-            $partner->image_partner = 'back-end/images/partners/' . $image_partner_name;
+            $image_partner->move(public_path('backEnd/images/partners'), $image_partner_name);
+            $partner->image_partner = 'backEnd/images/partners/' . $image_partner_name;
         }
         $partner->save();
         return redirect()->route('addPartner')->with('success', 'Partner added successfully');

@@ -12,8 +12,6 @@ class Event extends Model
 {
     protected $primaryKey = 'id_event';
     protected $fillable = [
-        // Other fillable fields...
-        'id_event',
         'title_event',
         'description_event',
         'date_start',
@@ -31,16 +29,16 @@ class Event extends Model
 
     public function users(): belongsToMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class,'eventUser', 'id_user','id_event');
     }
 
     public function partners(): belongsToMany
     {
-        return $this->belongsToMany(Partner::class,'event_partner', 'id_event', 'id_partner');
+        return $this->belongsToMany(Partner::class,'eventPartners', 'id_event', 'id_partner');
     }
-    public function img_events(): hasMany
+    public function ImageEvents(): hasMany
     {
-        return $this->hasMany(Img_event::class,'id_image');
+        return $this->hasMany(ImageEvent::class,'id_event');
     }
     public function organizers(): belongsTo
     {

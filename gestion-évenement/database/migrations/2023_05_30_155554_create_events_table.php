@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('status');
             $table->timestamps();
             //foreign keys
-            $table->unsignedBigInteger('id_organizer');
+            $table->unsignedBigInteger('id_organizer')->nullable();
             $table->unsignedBigInteger('id_category');
             $table->foreign('id_category')->references('id_category')->on('categories')->onDelete('cascade');
             $table->foreign('id_organizer')->references('id_organizer')->on('organizers')->onDelete('cascade');

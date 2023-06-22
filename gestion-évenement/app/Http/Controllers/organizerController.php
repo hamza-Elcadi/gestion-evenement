@@ -52,8 +52,8 @@ class organizerController extends Controller
         $logoImage = $request->file('logo_organizer');
         if ($logoImage) {
             $logoImageName = time() . '_' . $logoImage->getClientOriginalName();
-            $logoImage->move(public_path('logo_images'), $logoImageName);
-            $organizer->logo_organizer = 'logo_images/' . $logoImageName;
+            $logoImage->move(public_path('backEnd/images/organizers'), $logoImageName);
+            $organizer->logo_organizer = 'backEnd/images/organizers/' . $logoImageName;
         }
 
         $organizer->save();

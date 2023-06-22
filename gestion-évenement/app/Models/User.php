@@ -20,10 +20,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+        'name_user',
+        'pw_user',
+        'cin',
+        'tel_user',
+        'email_user',
+        'role_user'
+        ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -46,11 +49,7 @@ class User extends Authenticatable
     ];
     public function events(): belongsToMany
     {
-        return $this->belongsToMany(Event::class);
-    }
-    public function roles(): belongsTo
-    {
-        return $this->belongsTo(Role::class, 'id_role');
+        return $this->belongsToMany(Event::class,'eventUser', 'id_user','id_event');
     }
 
 }

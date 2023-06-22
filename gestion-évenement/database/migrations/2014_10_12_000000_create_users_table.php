@@ -17,12 +17,11 @@ return new class extends Migration
             $table->string('cin')->unique();
             $table->string('tel_user');
             $table->string('email_user')->unique();
+            $table->enum('role_user', ['admin', 'modulator', 'utilisateur'])->default('modulator');
             $table->string('pw_user');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->unsignedBigInteger('id_role')->nullable(false);
-            $table->foreign('id_role')->references('id_role')->on('roles')->onDelete('cascade');
         });
     }
 

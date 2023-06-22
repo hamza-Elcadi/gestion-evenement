@@ -68,7 +68,8 @@
                                 <div class="col-md-6 pl-1">
                                     <div class="form-group">
                                         <label for="date_start">Date Start</label>
-                                        <input type="date" class="form-control" name="date_start" id="datepicker" value="{{ isset($eventValue) ? $eventValue->date_start : '' }}">
+                                        <input type="date" class="form-control" name="date_start" id="datepicker"
+                                            value="{{ isset($eventValue) ? $eventValue->date_start : '' }}">
 
                                         {{-- <input type="text" class="form-control" placeholder="Tel" name="tel_user" value="{{ isset($modulator1) ? $modulator1->tel_user : '' }}"> --}}
                                     </div>
@@ -78,7 +79,9 @@
                                 <div class="col-md-6 pr-1">
                                     <div class="form-group">
                                         <label for="nbr_place">Number of places</label>
-                                        <input name="nbr_place" id="nbr_place" type="text" class="form-control" placeholder="Places Number" value="{{ isset($eventValue) ? $eventValue->nbr_place : '' }}">
+                                        <input name="nbr_place" id="nbr_place" type="text" class="form-control"
+                                            placeholder="Places Number"
+                                            value="{{ isset($eventValue) ? $eventValue->nbr_place : '' }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6 pl-1">
@@ -93,7 +96,8 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="role" class="form-label select-label">Partner</label>
-                                        <select placeholder='location'  class="select custom-select" id="inputGroupSelect01" name="id_partner" multiple>
+                                        <select placeholder='location' class="select custom-select" id="inputGroupSelect01"
+                                            name="id_partner[]" multiple>
                                             @if (isset($partners) && $partners->count() > 0)
                                                 @foreach ($partners as $partner)
                                                     <div class="form-check">
@@ -105,7 +109,8 @@
                                                     </div>
                                                 @endforeach
                                             @else
-                                                <input class="form-check-input" type="checkbox" value="empty" id="defaultCheck1">
+                                                <input class="form-check-input" type="checkbox" value="empty"
+                                                    id="defaultCheck1">
                                             @endif
                                         </select>
                                     </div>
@@ -115,7 +120,6 @@
                                         <label for="role">Orgnizer</label>
                                         <select placeholder='location' class="custom-select" id="inputGroupSelect01"
                                             name="id_organizer">
-                                            <option value="" selected disabled>Select Organizer</option>
                                             @if (isset($organizers) && $organizers->count() > 0)
                                                 @foreach ($organizers as $organizer)
                                                     <option value="{{ $organizer->id_organizer }}"
@@ -123,7 +127,7 @@
                                                         {{ $organizer->name_organizer }}</option>
                                                 @endforeach
                                             @else
-                                                <option value="00000000">Empty</option>
+                                                <option value="null">Empty</option>
                                             @endif
                                         </select>
                                     </div>
@@ -136,7 +140,6 @@
                                         <div>
                                             <select placeholder='location' class="custom-select" id="inputGroupSelect01"
                                                 name="id_category">
-                                                <option value="" selected disabled>Select Category</option>
                                                 @if (isset($categories) && $categories->count() > 0)
                                                     @foreach ($categories as $category)
                                                         <option value="{{ $category->id_category }}"
@@ -144,7 +147,7 @@
                                                             {{ $category->name_category }}</option>
                                                     @endforeach
                                                 @else
-                                                    <option value="00000000">Empty</option>
+                                                    <option value="">Empty</option>
                                                 @endif
                                             </select>
                                             <input type="hidden" class="form-control" placeholder="categorie">
@@ -165,14 +168,16 @@
                                         <i class="fa-regular fa-square-caret-up fa-6x"></i>
                                         <h3>Images </h3>
                                     </label>
-                                    <input type="file" class="custom-file-input logoOrImage" id="imageUpload" name="uploadImage" multiple>
+                                    <input type="file" class="custom-file-input logoOrImage" id="imageUpload"
+                                        name="uploadImage[]" multiple>
                                     <input type="hidden" name="old_imageUpload" value="">
                                     <div id="previewContainer"></div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="update ml-auto mr-auto">
-                                    <button type="submit" class="btn btn-primary btn-round">{{ $buttonContent }}</button>
+                                    <button type="submit"
+                                        class="btn btn-primary btn-round">{{ $buttonContent }}</button>
                                 </div>
                             </div>
                         </div>
@@ -226,12 +231,15 @@
                                             partner
                                         </th>
                                         <th>
-                                            images
+                                            action
                                         </th>
                                     </thead>
                                     <tbody>
                                         @if (isset($events) && $events->count() > 0)
                                             @foreach ($events as $event)
+                                            {{-- @php
+                                                                dd($event->ImageEvents->name_image);
+                                                            @endphp --}}
                                                 <tr>
                                                     <td scope="row">
                                                         {{ $event->title_event }}
@@ -258,22 +266,15 @@
                                                         {{ $event->organizers->name_organizer }}
                                                     </td>
                                                     <td scope="row">
-                                                        {{ $event->categories->name_category }}
+                                                        {{ $event->categories->name_category }}</li>
+
+                                                        </ul>
                                                     </td>
                                                     <td scope="row">
                                                         @foreach ($event->partners as $partner)
-                                                            {{ $partner->name_partner }}
+                                                            <li>{{ $partner->name_partner }}</li>
                                                         @endforeach
 
-                                                    </td>
-                                                    <td scope="row">
-                                                        <div style="width: 50px;">
-                                                            @foreach ($images as $image )
-                                                                <img src="{{ asset($event->img_events->name_image) }}"
-                                                                alt="Organizer Logo" class="img-fluid">
-                                                            @endforeach
-
-                                                        </div>
                                                     </td>
                                                     <td scope="row" class="d-flex justify-content-between">
                                                         <a
@@ -284,6 +285,23 @@
                                                                 class="fa-solid fa-pen-to-square"></i></a>
                                                     </td>
 
+                                                </tr>
+                                                <tr>
+                                                    <td>Images:</td>
+                                                    <td scope="row" colspan="10">
+                                                        <div style="width: 200px; display:flex;">
+
+                                                            @if (!empty($event->ImageEvents))
+                                                                @foreach ($event->ImageEvents as $image)
+                                                                    <img src="{{ asset($image->name_image) }}" alt="Organizer Logo"
+                                                                        class="img-fluid">
+                                                                @endforeach
+                                                            @else
+                                                                empty
+                                                            @endif
+
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                             @if (session('success'))
@@ -296,7 +314,7 @@
                                             @endif
                                         @else
                                             <tr class="mx-auto" scope="row">
-                                                <td colspan="9" class="p-3 mb-2 bg-info text-white " role="alert">
+                                                <td colspan="11" class="p-3 mb-2 bg-info text-white " role="alert">
                                                     <div class="mx-auto" style="width: 100px;">Empty</div>
                                                 </td>
                                             </tr>

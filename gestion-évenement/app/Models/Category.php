@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Relations\hasMany;
 class Category extends Model
 {
     protected $primaryKey = 'id_category';
-    use HasFactory;
+    protected $fillable = ['name_category'];
     public function events(): hasMany
     {
-        return $this->hasMany(Event::class,'id_event');
+        return $this->hasMany(Event::class,'id_category');
     }
 }

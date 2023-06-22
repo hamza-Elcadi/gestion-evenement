@@ -8,9 +8,12 @@ use Illuminate\Database\Eloquent\Relations\hasMany;
 class Rib extends Model
 {
     protected $primaryKey = 'id_rib';
+    protected $fillable = [
+        'name_rib',
+    ];
     use HasFactory;
     public function organizers(): hasMany
     {
-        return $this->hasMany(Organizer::class, 'id_organizer');
+        return $this->hasMany(Organizer::class, 'id_rib');
     }
 }
